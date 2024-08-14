@@ -11,13 +11,13 @@ export default function AuthAccount() {
 
     return (
         <GuestLayout>
-            <Head title="" />
+            <Head title="Log In" />
 
             <div className='flex flex-col'>
-                <div className=' sticky p-3 flex justify-between'>
-                    <div><XIcon /></div>
+                <div className=' sticky p-3 flex justify-center'>
+                    {/* <div><XIcon /></div> */}
                     <div className='text-neutral-900 text-sm font-bold'>Member Account</div>
-                    <div></div>
+                    {/* <div></div> */}
                 </div>
                 <div className='flex flex-col gap-4 max-h-[80vh] overflow-auto'>
                     <div className="flex w-full justify-center">
@@ -54,6 +54,7 @@ export default function AuthAccount() {
                                 variant='black'
                                 size='sm'
                                 className='flex justify-center'
+                                disabled={true}
                             >
                                 Continue as guest
                             </Button>
@@ -61,6 +62,7 @@ export default function AuthAccount() {
                                 variant='white'
                                 size='sm'
                                 className='flex justify-center'
+                                disabled={true}
                             >
                                 Continue as staff
                             </Button>

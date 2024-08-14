@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [AuthController::class, 'index']);
+Route::get('/otp', [AuthController::class, 'otp'])->name('otp');
+Route::post('/verify-otp', [AuthController::class, 'verifyOtp'])->name('verify.otp');
 
 Route::get('/components/buttons', function () {
     return Inertia::render('Components/Buttons');

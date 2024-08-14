@@ -4,13 +4,14 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import { InputMask } from "primereact/inputmask";
+import Button from '@/Components/Button';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
-        phone: '',
+        nickname: '',
+        phone_number: '',
         password: '',
-        password_confirmation: '',
     });
 
     const submit = (e) => {
@@ -28,17 +29,16 @@ export default function Register() {
             <form onSubmit={submit}>
                 <div>
                     <div className='flex items-center gap-1'>
-                        <InputLabel htmlFor="name" value="Name" /><span className='text-error-500 text-xs font-medium'>*</span>
+                        <InputLabel htmlFor="nickname" value="Nickname" /><span className='text-error-500 text-xs font-medium'>*</span>
                     </div>
 
                     <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
+                        id="nickname"
+                        name="nickname"
+                        type="text"
+                        value={data.nickname}
                         className="mt-1 block w-full"
-                        autoComplete="name"
-                        isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
+                        onChange={(e) => setData('nickname', e.target.value)}
                         required
                     />
 
@@ -46,20 +46,11 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="phone_number" value="Phone Number" />
 
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
-                        required
-                    />
+                    <InputMask id="phone" mask="(999) 999-9999" placeholder="(019) 999-9999" onChange={(e) => setData('phone_number', e.target.value)} className='w-full rounded-xl border-neutral-100 focus:border-primary-500 focus:outline-none focus:ring-0'></InputMask>
 
-                    <InputError message={errors.email} className="mt-2" />
+                    <InputError message={errors.phone_number} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
@@ -79,34 +70,11 @@ export default function Register() {
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
-
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password_confirmation', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.password_confirmation} className="mt-2" />
-                </div>
-
                 <div className="flex items-center justify-end mt-4">
-                    <Link
-                        href={route('login')}
-                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Already registered?
-                    </Link>
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                    <Button size='sm' className="w-full flex justify-center" disabled={processing || !data.nickname || !data.phone_number || !data.password} >
                         Register
-                    </PrimaryButton>
+                    </Button>
                 </div>
             </form>
         // </GuestLayout>
