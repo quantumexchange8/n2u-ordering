@@ -1,7 +1,6 @@
 import Button from '@/Components/Button'
 import Authenticated from '@/Layouts/AuthenticatedLayout'
-// import { HomeIcon } from '@heroicons/react/outline'
-import { Circle } from '@/Components/Icon/outline';
+import { Circle } from '@/Components/Icon/Outline';
 
 export default (props) => {
     const variants = [
