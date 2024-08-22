@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import GuestLayout from '@/Layouts/GuestLayout';
 import { XIcon } from '@/Components/Icon/Outline';
 import { InputOtp } from 'primereact/inputotp';
-import { useForm } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 
 export default function Otp({ phone }) {
 
@@ -12,7 +12,7 @@ export default function Otp({ phone }) {
     });
 
     useEffect(() => {
-        console.log(data.otp)
+        
         if (data.otp.length === 6) {
             submit(); // Auto-submit when OTP length is 6
         }
@@ -31,7 +31,7 @@ export default function Otp({ phone }) {
                 </div>
                 <div className="flex flex-col gap-5">
                     <div className="text-xl font-bold text-neutral-900">
-                        {phone}
+                        +{phone}
                     </div>
                     <div className="flex justify-center">
                         <form onSubmit={submit}>
@@ -46,6 +46,12 @@ export default function Otp({ phone }) {
                             />
                             {errors.otp && <span className="text-red-500">{errors.otp}</span>}
                         </form>
+                    </div>
+
+                    <div>
+                        <Link href={route('auth.login')}>
+                                Back to login
+                        </Link>
                     </div>
                 </div>
             </div>

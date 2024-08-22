@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
+use App\Models\Member;
+use App\Models\Otp;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -13,7 +17,11 @@ class AuthController extends Controller
     public function index()
     {
 
-        return Inertia::render('Auth/AuthAccount');
+        $countries = Country::get();
+        
+        return Inertia::render('Auth/Login', [
+            'countries' => $countries,
+        ]);
     }
 
     public function otp()
@@ -36,9 +44,22 @@ class AuthController extends Controller
         $phone = Session::get('register_data');
         
         $otp = $request->input('otp');
-        $storedOtp = Cache::get('otp_' . $phone);
+        
+        $verifyOtp = Otp::where('phone_number', $phone['phone_number'])->where('otp', $otp)->first();
 
-        Auth::login($phone);
-        return redirect(route('dashboard', absolute: false));
+        if(!empty($verifyOtp)) {
+            if (now() <= $verifyOtp->expired_at) {
+                
+                $member = User::where('phone', $phone['phone_number'])->first();
+
+                $member->update([
+                    'verify' => now(),
+                ]);
+
+                Auth::login($member);
+                return redirect(route('dashboard', absolute: false));
+            }
+        }
+        
     }
 }

@@ -8,10 +8,14 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/js/**/*.jsx',
+        "./src/**/*.{js,jsx,ts,tsx,mdx}",
     ],
 
     theme: {
         extend: {
+            backgroundImage: {
+                'bg-image': "url('/assets/n2u.png')"
+            },
             fontFamily: {
                 sans: ['DM Sans', ...defaultTheme.fontFamily.sans],
             },

@@ -20,7 +20,10 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "@heroicons/react": "^2.1.5",
         "primeicons": "^7.0.0",
-        "primereact": "^10.8.2"
+        "primereact": "^10.8.2",
+        "react-hot-toast": "^2.4.1",
+        "react-qrcode-logo": "^3.0.0"
     }
 }

@@ -16,11 +16,12 @@ return new class extends Migration
             $table->string('username');
             $table->string('phone');
             $table->string('email')->nullable();
-            $table->string('verify');
+            $table->string('password');
+            $table->string('verify')->nullable();
             $table->string('referral');
-            $table->string('upline');
-            $table->string('hierarchyList');
-            $table->string('point');
+            $table->string('upline')->nullable();
+            $table->string('hierarchyList')->nullable();
+            $table->double('point')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

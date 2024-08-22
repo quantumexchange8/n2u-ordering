@@ -28,21 +28,21 @@ export default function AuthAccount() {
                                         <Tab
                                             className="transition-all duration-300 rounded-full py-2 px-3 text-xs text-neutral-500 font-bold focus:outline-none data-[selected]:bg-primary-500 data-[selected]:text-white data-[focus]:outline-1 data-[focus]:outline-white"
                                         >
-                                            <span className='px-1.5'>Sign Up</span>
+                                            <span className='px-1.5'>Log In</span>
                                         </Tab>
                                         <Tab
                                             className="transition-all duration-300 rounded-full py-2 px-3 text-xs text-neutral-500 font-bold focus:outline-none data-[selected]:bg-primary-500 data-[selected]:text-white data-[focus]:outline-1 data-[focus]:outline-white"
                                         >
-                                            <span className='px-2.5'>Log In</span>
+                                            <span className='px-2.5'>Sign Up</span>
                                         </Tab>
                                     </div>
                                 </TabList>
                                 <TabPanels>
                                     <TabPanel className="p-4">
-                                        <Register />
-                                    </TabPanel>
-                                    <TabPanel className="rounded-xl bg-white/5 p-3">
                                         <Login />
+                                    </TabPanel>
+                                    <TabPanel className="p-4">
+                                        <Register />
                                     </TabPanel>
                                 </TabPanels>
                             </TabGroup>
