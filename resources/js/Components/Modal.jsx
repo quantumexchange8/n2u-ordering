@@ -1,6 +1,6 @@
 import { Button, CloseButton, Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import { useCallback, useState } from 'react';
-import { XIcon } from './Icon/outline';
+import { XIcon } from './Icon/Outline';
 
 export default function Modal({ children, show = false, maxWidth = 'md', maxHeight = 'md', isOpen, close, title, footer, closeIcon, preventCloseOnClickOutside = true }) {
 

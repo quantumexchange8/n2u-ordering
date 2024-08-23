@@ -9,7 +9,7 @@ import Button from '@/Components/Button';
 import { Switch } from '@headlessui/react'
 import { useEffect, useState } from 'react';
 import InputIconWrapper from '@/Components/InputIconWrapper';
-import { EyeOff, EyeOn } from '@/Components/Icon/outline';
+import { EyeOff, EyeOn } from '@/Components/Icon/Outline';
 import { Dropdown } from 'primereact/dropdown';
 
 export default function Login({ status, canResetPassword, countries }) {
