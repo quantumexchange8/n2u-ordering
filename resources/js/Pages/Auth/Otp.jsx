@@ -49,7 +49,7 @@ export default function Otp({ phone }) {
                     </div>
 
                     <div>
-                        <Link href={route('auth.login')}>
+                        <Link href={route('login')}>
                                 Back to login
                         </Link>
                     </div>

@@ -61,10 +61,12 @@ export default function Withdrawal({ cashWallet }) {
             <CustomToaster />
             <div className="w-full flex justify-center">
                 <div className="max-w-md w-full flex flex-col min-h-[80vh] overflow-auto">
-                    <div className="bg-primary-500 py-3 px-3 flex justify-between items-center gap-3">
-                        <div className="rounded-full bg-white w-6 h-6 p-1 flex justify-center items-center" onClick={handleBack}>
-                            <ChevronLeft />
-                        </div>
+                    <div className="bg-white py-3 px-3 flex justify-between items-center gap-3 shadow-box">
+                        <Link href={route('profile')}>
+                            <div className="rounded-full bg-white w-6 h-6 p-1 flex justify-center items-center">
+                                <ChevronLeft />
+                            </div>
+                        </Link>
                         <div className="text-neutral-900 font-bold text-sm">
                             Wallet Withdrawal
                         </div>
@@ -88,21 +90,17 @@ export default function Withdrawal({ cashWallet }) {
                                     onValueChange={(e) => setData('amount', e.value)} 
                                     mode="currency" 
                                     currency="MYR" locale="en-MY"
-                                    className="w-full font-bold"
+                                    className="w-full font-bold border border-neutral-100 rounded-md focus:outline-none focus:ring-0"
                                 />
                             </div>
                         </div>
-                        <div className="grid grid-cols-3 grid-rows-2 gap-2">
-                            {fixAmount.map((item, index) => (
-                                <button
-                                    key={index}
-                                    className={`p-2 border rounded text-center ${data.amount === item.value ? 'bg-primary-100 text-primary-500 border border-primary-500' : 'bg-white border border-neutral-100'}`}
-                                    onClick={() => handleAmountSelection(item.value)}
-                                >
-                                    {item.value}
-                                </button>
-                            ))}
-                        </div>
+                        {
+                            data.amount > cashWallet.balance && (
+                                <div className="text-xs text-error-600 font-medium">
+                                    Withdrawal amount exceeded cash wallet balance
+                                </div>
+                            )
+                        }
                     </div>
 
                     <div className="p-3">

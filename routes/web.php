@@ -6,22 +6,25 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PointController;
+use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\WalletController;
 
-Route::get('/', [AuthController::class, 'index']);
-Route::get('/otp', [AuthController::class, 'otp'])->name('otp');
-Route::post('/verify-otp', [AuthController::class, 'verifyOtp'])->name('verify.otp');
-Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
+Route::get('/', function () {
+    return redirect()->route('login');
+});
 
 Route::get('/components/buttons', function () {
     return Inertia::render('Components/Buttons');
 })->middleware(['auth', 'verified'])->name('components.buttons');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+
+    
+
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
     Route::get('/profile-edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/updateProfile', [ProfileController::class, 'updateProfile'])->name('updateProfile');
@@ -46,6 +49,22 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/withdrawal', [WalletController::class, 'withdrawal'])->name('withdrawal');
     Route::post('/submitWithdraw', [WalletController::class, 'submitWithdraw'])->name('submitWithdraw');
+
+    // VOUCHER 
+    Route::get('/voucher', [VoucherController::class, 'voucher'])->name('voucher');
+    Route::get('/getVoucher', [VoucherController::class, 'getVoucher'])->name('getVoucher');
+    Route::get('/getUserVoucher', [VoucherController::class, 'getUserVoucher'])->name('getUserVoucher');
+
+    Route::post('/redeemVoucher', [VoucherController::class, 'redeemVoucher'])->name('redeemVoucher');
+
+    // POINT 
+    Route::get('/point-history', [PointController::class, 'pointHistory'])->name('point-history');
+    Route::get('/getAllPointTransaction', [PointController::class, 'getAllPointTransaction'])->name('getAllPointTransaction');
+    
+
+    // Chnage password
+    Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
+    Route::post('/updatePassword', [ProfileController::class, 'updatePassword'])->name('updatePassword');
 
 });
 

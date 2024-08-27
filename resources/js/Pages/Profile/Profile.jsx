@@ -9,6 +9,8 @@ import { InputNumber } from 'primereact/inputnumber';
 import { useEffect } from "react";
 import { CustomToaster } from "@/Components/CustomToaster";
 import toast from "react-hot-toast";
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
+import { LogoutImg } from "@/Components/Icon/Illustration";
 
 export default function Profile({ auth, rank, cashWallet, dineInWallet  }) {
     
@@ -71,6 +73,44 @@ export default function Profile({ auth, rank, cashWallet, dineInWallet  }) {
 
     }
 
+    const Logout = () => {
+
+        confirmDialog({
+            group: 'Logout',
+            message: 'We hope you enjoyed your time with us! If you log out now, you’ll need to sign back in to access your account. Do you still want to log out?',
+            header: 'Are you sure you want to log out?',
+            icon: 'pi pi-exclamation-triangle',
+            defaultFocus: 'accept',
+            accept: confirmLogout,
+            reject: cancelLogout,
+            
+        });
+    }
+
+    const confirmLogout = async () => {
+        
+        LogoutFunction();
+    }
+
+    const cancelLogout = () => {
+        
+    }
+
+    const LogoutFunction = () => {
+        post(route('logout'), {
+            method: 'POST',
+            preserveScroll: true,
+            onSuccess: () => {
+                toast.success('You’ve successfully log out.', {
+                    title: 'You’ve successfully log out.',
+                    duration: 3000,
+                    variant: 'variant1',
+                });
+            }
+        }
+    );
+    }
+
     return (
         <>
             <CustomToaster />
@@ -129,7 +169,7 @@ export default function Profile({ auth, rank, cashWallet, dineInWallet  }) {
                             <div className="flex items-center gap-5">
                                 <div className="flex flex-col w-full">
                                     <div className="text-neutral-300 text-xs font-medium">Points Balance</div>
-                                    <div className="text-white text-lg font-bold">{auth.user.point}</div>
+                                    <div className="text-white text-lg font-bold">{auth.user.point} pts</div>
                                 </div>
                                 <div className="w-[1px] h-full bg-neutral-600"></div>
                                 <div className="flex flex-col w-full">
@@ -157,7 +197,7 @@ export default function Profile({ auth, rank, cashWallet, dineInWallet  }) {
                                 <div><ChevronRight2 /></div>
                             </div>
                         </Link>
-                        <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3">
+                        <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3 cursor-not-allowed opacity-50">
                             <div><OrderIcon /></div>
                             <div className="w-full text-neutral-900 text-sm font-bold">Order History</div>
                             <div><ChevronRight2 /></div>
@@ -177,32 +217,36 @@ export default function Profile({ auth, rank, cashWallet, dineInWallet  }) {
                                 <div><ChevronRight2 /></div>
                             </div>
                         )}
-                        <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3">
-                            <div><VoucherIcon /></div>
-                            <div className="w-full text-neutral-900 text-sm font-bold">My Vouchers</div>
-                            <div><ChevronRight2 /></div>
-                        </div>
-                        <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3">
-                            <div><PointIcon /></div>
-                            <div className="w-full text-neutral-900 text-sm font-bold">Points History</div>
-                            <div><ChevronRight2 /></div>
-                        </div>
-                        <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3">
+                        {/* <Link href={route('voucher')}> */}
+                            <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3 cursor-not-allowed opacity-50">
+                                <div><VoucherIcon /></div>
+                                <div className="w-full text-neutral-900 text-sm font-bold">My Vouchers</div>
+                                <div><ChevronRight2 /></div>
+                            </div>
+                        {/* </Link> */}
+                        <Link href={route('point-history')}>
+                            <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3">
+                                <div><PointIcon /></div>
+                                <div className="w-full text-neutral-900 text-sm font-bold">Points History</div>
+                                <div><ChevronRight2 /></div>
+                            </div>
+                        </Link>
+                        <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3 cursor-not-allowed opacity-50">
                             <div><LanguageIcon /></div>
                             <div className="w-full text-neutral-900 text-sm font-bold">Language</div>
                             <div><ChevronRight2 /></div>
                         </div>
-                        <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3">
-                            <div><PasswordIcon /></div>
-                            <div className="w-full text-neutral-900 text-sm font-bold">Change Password</div>
-                            <div><ChevronRight2 /></div>
-                        </div>
-                        <Link method="post" href={route('logout')} as="button">
+                        <Link href={route('change-password')}>
                             <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3">
-                                <div><LogOutIcon /></div>
-                                <div className="w-full text-left text-neutral-900 text-sm font-bold">Log Out</div>
+                                <div><PasswordIcon /></div>
+                                <div className="w-full text-neutral-900 text-sm font-bold">Change Password</div>
+                                <div><ChevronRight2 /></div>
                             </div>
                         </Link>
+                        <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3" onClick={() => Logout()}>
+                            <div><LogOutIcon /></div>
+                            <div className="w-full text-left text-neutral-900 text-sm font-bold">Log Out</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -277,6 +321,46 @@ export default function Profile({ auth, rank, cashWallet, dineInWallet  }) {
             >
 
             </Modal>
+
+            <ConfirmDialog 
+                group="Logout"
+                content={({ headerRef, contentRef, footerRef, hide, message }) => (
+                    <div className="relative flex flex-col gap-6 items-center p-5 rounded-lg border border-primary-200 max-w-[336px] bg-white">
+                        <div>
+                            <LogoutImg />
+                        </div>
+                        <div className='flex flex-col gap-3 items-center'>
+                            <div className="font-bold text-center text-base text-neutral-900 font-sf-pro select-none" ref={headerRef}>
+                                {message.header}
+                            </div>
+                            <div className='text-neutral-500 text-xs font-sf-pro text-center select-none' ref={contentRef}>
+                                {message.message}
+                            </div>
+                        </div>
+                        <div className="w-full flex items-center gap-2 " ref={footerRef}>
+                            <Button
+                                onClick={(event) => {
+                                    hide(event);
+                                    cancelLogout();
+                                }}
+                                size='sm'
+                                variant='white'
+                                className="w-full flex justify-center font-sf-pro"
+                            >Cancel</Button>
+                            <Button
+                                onClick={(event) => {
+                                    hide(event);
+                                    confirmLogout();
+                                }}
+                                variant="red"
+                                size='sm'
+                                className="w-full flex justify-center font-sf-pro"
+                            >Logout</Button>
+                            
+                        </div>
+                    </div>
+                )}
+            />
         </>
     )
 }

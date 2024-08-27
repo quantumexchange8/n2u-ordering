@@ -14,6 +14,7 @@ export default function Register({ referral_code, countries }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         phone: '',
+        email: '',
         password: '',
         referral_code: referral_code,
         dialCode: null,
@@ -49,8 +50,8 @@ export default function Register({ referral_code, countries }) {
 
     const countryOptionTemplate = (option) => {
         return (
-            <div className="flex align-items-center">
-                <div className='text-sm text-neutral-900 font-medium'>{option.name} <span className='text-neutral-300'>({option.dial_code})</span></div>
+            <div className="flex align-items-center gap-1 text-sm text-neutral-900 font-medium">
+                <div className='max-w-40 overflow-hidden overflow-ellipsis'>{option.name}</div> <span className='text-neutral-300'>({option.dial_code})</span>
             </div>
         );
     };
@@ -86,6 +87,24 @@ export default function Register({ referral_code, countries }) {
                                 />
 
                                 <InputError message={errors.name} className="mt-2" />
+                            </div>
+
+                            <div className="mt-4">
+                                <div className='flex items-center gap-1'>
+                                    <InputLabel htmlFor="email" value="Email" /><span className='text-error-500 text-xs font-medium'>*</span>
+                                </div>
+
+                                <TextInput
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    value={data.email}
+                                    className="mt-1 block w-full"
+                                    onChange={(e) => setData('email', e.target.value)}
+                                    required
+                                />
+
+                                <InputError message={errors.email} className="mt-2" />
                             </div>
 
                             <div className="mt-4">

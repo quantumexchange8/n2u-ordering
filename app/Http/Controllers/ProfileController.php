@@ -11,11 +11,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\Rules;
 
 class ProfileController extends Controller
 {
@@ -93,7 +96,7 @@ class ProfileController extends Controller
 
         $rank = Ranking::find($user->rank_id);
 
-        $wallet = Wallet::where('type', 'cash_wallet')->where('user_id', $user->id)->first();
+        $wallet = Wallet::where('type', 'dine_in_wallet')->where('user_id', $user->id)->first();
 
         $rankSubsciption = RankSubscription::where('user_id', $user->id)->first();
 
@@ -161,6 +164,27 @@ class ProfileController extends Controller
             'email' => $request->email,
         ]);
 
+        return redirect()->back();
+    }
+
+    public function changePassword()
+    {
+
+
+        return Inertia::render('Profile/Password');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        
+        $validatedData = $request->validate([
+            'password' => ['required', 'confirmed'],
+        ]);
+
+        $user = Auth::user();
+        $user->password = Hash::make($validatedData['password']);
+        $user->save();
+        
         return redirect()->back();
     }
 }

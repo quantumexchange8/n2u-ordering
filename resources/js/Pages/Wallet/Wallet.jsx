@@ -56,7 +56,7 @@ export default function Wallet({ auth, cashWallet, dineInWallet }) {
         <>
             <div className="w-full flex justify-center">
                 <div className="max-w-md w-full flex flex-col min-h-[80vh] overflow-auto">
-                    <div className="bg-primary-500 py-3 px-3 flex justify-between items-center gap-3">
+                    <div className="bg-white py-3 px-3 flex justify-between items-center gap-3 shadow-box">
                         <div className="rounded-full bg-white w-6 h-6 p-1 flex justify-center items-center" onClick={handleBack}>
                             <ChevronLeft />
                         </div>
@@ -75,7 +75,7 @@ export default function Wallet({ auth, cashWallet, dineInWallet }) {
                                         <div key={index} className="py-3 flex justify-between" onClick={() => viewDetails(transaction)}>
                                             <div className="flex flex-col">
                                                 <div className="text-neutral-900 text-sm font-bold">
-                                                    {transaction.transaction_type}
+                                                    {transaction.transaction_type === 'Deposit' ? 'Top Up' : transaction.transaction_type === 'Withdrawal' ? 'Withdraw' : 'Refund'}
                                                 </div>
                                                 <div className="text-neutral-500 text-xs">
                                                     {formatDateTime(transaction.created_at)}
@@ -142,7 +142,7 @@ export default function Wallet({ auth, cashWallet, dineInWallet }) {
                             <div className="font-bold text-neutral-900 text-sm">{selectedTransaction.status}</div>
                         </div>
                         {
-                            selectedTransaction.status === 'rejected' && (
+                            selectedTransaction.remark !== null && (
                                 <div className="flex justify-between">
                                     <div className="text-neutral-500 text-sm">
                                         Remark

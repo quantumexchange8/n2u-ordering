@@ -775,11 +775,11 @@
   box-shadow: none;
 }
 .p-dropdown .p-dropdown-trigger {
-  background: #FFFFFF;
+  /* background: #FFFFFF; */
   color: #6c757d;
   width: 3rem;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
+  /* border-top-right-radius: 6px; */
+  /* border-bottom-right-radius: 6px; */
 }
 .p-dropdown .p-dropdown-clear-icon {
   color: #6c757d;
@@ -1090,7 +1090,7 @@
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   appearance: none;
   border-radius: 4px !important;
-  border: none;
+  border: 1px solid;
 }
 .p-inputtext:enabled:hover {
   border-color: #3B82F6;

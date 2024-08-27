@@ -89,6 +89,7 @@ export default {
             },
             boxShadow: {
                 'input': '0px 1px 2px 0px rgba(9, 9, 11, 0.05)',
+                'box': '0px 4px 12px 0px rgba(9, 9, 11, 0.08)',
             }
         },
         fontSize: {

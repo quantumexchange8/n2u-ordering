@@ -5,6 +5,7 @@ import { Head, Link } from '@inertiajs/react';
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 
 export default function Dashboard({ auth }) {
+
     return (
         <AuthenticatedLayout
             user={auth.user}

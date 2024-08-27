@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -20,6 +21,10 @@ Route::middleware('guest')->group(function () {
                 ->name('login');
 
     Route::post('store', [AuthenticatedSessionController::class, 'store']);
+
+    Route::get('/otp', [AuthController::class, 'otp'])->name('otp');
+    
+    Route::post('/verify-otp', [AuthController::class, 'verifyOtp'])->name('verify.otp');
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->name('password.request');

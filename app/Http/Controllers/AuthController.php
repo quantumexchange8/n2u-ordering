@@ -28,10 +28,9 @@ class AuthController extends Controller
     {
      
         $phone = Session::get('register_data');
-        
 
         return Inertia::render('Auth/Otp', [
-            'phone' => $phone['phone_number'],
+            'phone' => $phone['phone'],
         ]);
     }
 
@@ -42,16 +41,22 @@ class AuthController extends Controller
         ]);
 
         $phone = Session::get('register_data');
-        
+        $phoneNumber = $phone['phone'];
+
         $otp = $request->input('otp');
         
-        $verifyOtp = Otp::where('phone_number', $phone['phone_number'])->where('otp', $otp)->first();
+        $dialCode = substr($phoneNumber, 0, 2);  // '+60'
+        $phoneOnly = substr($phoneNumber, 2);    // '127784455'
+
+        $verifyOtp = Otp::where('phone_number', $phone['phone'])->where('otp', $otp)->first();
 
         if(!empty($verifyOtp)) {
             if (now() <= $verifyOtp->expired_at) {
                 
-                $member = User::where('phone', $phone['phone_number'])->first();
-
+                $member = User::where('dial_code', '+' . $dialCode)
+                    ->where('phone', $phoneOnly)
+                    ->first();
+                
                 $member->update([
                     'verify' => now(),
                 ]);

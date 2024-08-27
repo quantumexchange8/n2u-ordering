@@ -36,7 +36,7 @@ export default function Login({ status, canResetPassword, countries }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('login'), {
+        post('store', {
             onFinish: () => reset('password'),
         });
     };
@@ -55,8 +55,8 @@ export default function Login({ status, canResetPassword, countries }) {
 
     const countryOptionTemplate = (option) => {
         return (
-            <div className="flex align-items-center">
-                <div className='text-sm text-neutral-900 font-medium'>{option.name} <span className='text-neutral-300'>({option.dial_code})</span></div>
+            <div className="flex align-items-center gap-1 text-sm text-neutral-900 font-medium">
+                <div className='max-w-40 truncate'>{option.name}</div> <span className='text-neutral-300'>({option.dial_code})</span>
             </div>
         );
     };
@@ -143,12 +143,12 @@ export default function Login({ status, canResetPassword, countries }) {
                                     </Switch>
                                     <span className="ms-2 text-sm text-gray-600">Remember me</span>
                                 </label>
-                                <Link
+                                {/* <Link
                                     href={route('password.request')}
                                     className="text-xs text-primary-500 rounded-md focus:outline-none"
                                 >
                                     Forgot password
-                                </Link>
+                                </Link> */}
                             </div>
 
                             <div className="flex items-center justify-end mt-4">
@@ -171,14 +171,16 @@ export default function Login({ status, canResetPassword, countries }) {
                                 Register
                             </Button>
                         </Link>
-                        <Button
-                            variant='black'
-                            size='sm'
-                            className='flex justify-center'
-                            disabled={true}
-                        >
-                            Continue as guest
-                        </Button>
+                        <Link href={route('dashboard')}>
+                            <Button
+                                variant='black'
+                                size='sm'
+                                className='flex justify-center w-full'
+                                disabled={false}
+                            >
+                                Continue as guest
+                            </Button>
+                        </Link>
                     </div>
                     <div className='text-neutral-500 text-xss leading-7'>
                         By continuing,  you agree to Our <span className='text-primary-500'>User Agreement</span> and <span className='text-primary-500'>Privacy Policy</span> applies.

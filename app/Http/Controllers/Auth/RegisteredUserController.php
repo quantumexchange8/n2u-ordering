@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class RegisteredUserController extends Controller
 {
@@ -49,6 +50,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255|unique:users',
             'phone' => ['required', 'unique:users'],
+            'email' => ['required', 'email', Rule::unique('users')],
             'password' => ['required', Rules\Password::defaults()],
         ]);
         
@@ -130,8 +132,8 @@ class RegisteredUserController extends Controller
 
         // Auth::login($user);
 
-        $smsService = new Sms123Service();
-        $smsService->sendOtp($formattedPhone, $otp);
+        // $smsService = new Sms123Service();
+        // $smsService->sendOtp($formattedPhone, $otp);
 
         // return redirect(route('dashboard', absolute: false));
         return redirect(route('otp'));

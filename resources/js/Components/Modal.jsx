@@ -37,8 +37,8 @@ export default function Modal({ children, show = false, maxWidth = 'md', maxHeig
                             className={`w-full max-w-md rounded-xl bg-white border shadow-md backdrop-blur-2xl duration-150 ease-out data-[closed]:transform-[scale(90%)] data-[closed]:opacity-0 data-[closed]:ease-in ${maxWidthClass} ${maxHeightClass}`}
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <DialogTitle className="m-0 text-lg font-bold text-neutral-950 flex justify-between p-5 bg-white border-b border-gray-100 rounded-t-lg">
-                                <div className='w-full'>
+                            <DialogTitle className="m-0 text-lg font-bold text-neutral-950 flex justify-between p-3 bg-white border-b border-gray-100 rounded-t-lg">
+                                <div className='w-full text-center text-sm'>
                                     {title}
                                 </div>
                                 <CloseButton onClick={close}>
@@ -47,7 +47,7 @@ export default function Modal({ children, show = false, maxWidth = 'md', maxHeig
                                 </CloseButton>
                             </DialogTitle>
                             {children}
-                            <div className="w-full p-5 bg-white rounded-b-lg shadow-modal">
+                            <div className="w-full p-5 bg-white rounded-b-lg shadow-modal border-t border-neutral-100">
                                 {footer}
                             </div>
                         </DialogPanel>
