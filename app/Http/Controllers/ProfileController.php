@@ -94,6 +94,7 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $rankingFee = Ranking::where('name', 'VIP')->first();
+        $settingFee = Setting::where('setting_name', 'rank')->first();
 
         $rank = Ranking::find($user->rank_id);
 
@@ -108,6 +109,7 @@ class ProfileController extends Controller
             'rankingFee' => $rankingFee,
             'rankSubsciption' => $rankSubsciption,
             'wallet' => $wallet,
+            'settingFee' => $settingFee,
         ]);
     }
 

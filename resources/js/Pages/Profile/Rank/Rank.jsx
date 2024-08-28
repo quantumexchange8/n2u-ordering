@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, ChevronRight2, CommIcon, EditIcon, LanguageI
 import Button from "@/Components/Button";
 import { formatDate } from "@/Composables";
 
-export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet }) {
+export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet, settingFee }) {
 
     const handleBack = () => {
         window.history.back(); // Go back in the browser history
@@ -38,7 +38,7 @@ export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet }
                                     </div>
 
                                     <div className="text-base font-bold">
-                                        RM {rankingFee.min_amount}/year
+                                        RM {settingFee.value}/year
                                     </div>
                                 </div>
                                 <div className="flex flex-col gap-2">
@@ -46,7 +46,7 @@ export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet }
                                         <Button
                                             variant="white"
                                             size="sm"
-                                            disabled={auth.user.rank_id === '2' || processing || rankSubsciption != null || wallet.balance < rankingFee.min_amount}
+                                            disabled={auth.user.rank_id === '2' || processing || rankSubsciption != null || wallet.balance < settingFee.value}
                                             onClick={submit}
                                         >
                                             Join Member
