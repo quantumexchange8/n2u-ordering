@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\CommissionLog;
 use App\Models\Country;
 use App\Models\Member;
 use App\Models\Otp;
+use App\Models\Setting;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Services\RunningNumberService;
@@ -95,6 +97,23 @@ class RegisteredUserController extends Controller
 
                 $userData['upline_id'] = $upline_id;
                 $userData['hierarchyList'] = $hierarchyList;
+
+                $uplineWallet = Wallet::where('user_id', $upline_id)->where('type', 'cash_wallet')->first();
+                $referralComm = Setting::where('name', 'referral')->first();
+
+
+                $commLog = CommissionLog::create([
+                    'user_id' => $upline_id,
+                    'wallet_id' => $uplineWallet->id,
+                    'amount' => $referralComm->value,
+                    'old_balance' => $uplineWallet->balance,
+                    'new_balance' => $uplineWallet->balance += $referralComm->value,
+                    'transaction_date' => now(),
+                ]);
+
+                $uplineWallet->balance += $referralComm->value;
+                $uplineWallet->save();
+
             }
         } else {
             $userData = [

@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Voucher extends Model
 {
     use HasFactory, SoftDeletes;
+
+    public function voucherRedeem(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(VoucherRedeem::class, 'id', 'voucher_id');
+    }
 }

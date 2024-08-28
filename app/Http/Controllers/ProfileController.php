@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Ranking;
 use App\Models\RankSubscription;
+use App\Models\Setting;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -121,6 +122,7 @@ class ProfileController extends Controller
         
         $checkWallet = Wallet::where('type', 'dine_in_wallet')->where('user_id', $request->id)->first();
         $rankPrice = Ranking::where('name', 'VIP')->first();
+        $settingRank = Setting::where('setting_name', 'rank')->first();
 
         if ($checkWallet->balance >= $rankPrice->min_amount) {
             $subscription = RankSubscription::create([
@@ -130,7 +132,7 @@ class ProfileController extends Controller
                 'status' => 'pending',
             ]);
 
-            $checkWallet->balance -= $rankPrice->min_amount;
+            $checkWallet->balance -= $settingRank->value;
             $checkWallet->save();
 
             return redirect()->back()->with('success', 'successfully requested for upgrade rank');

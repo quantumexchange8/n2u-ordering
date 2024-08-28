@@ -134,6 +134,30 @@ const EditIcon = () => {
     );
 }
 
+const EditIcon2 = () => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="none">
+            <g filter="url(#filter0_d_472_5452)">
+                <rect x="2" y="1" width="16" height="16" rx="8" fill="white" shapeRendering="crispEdges"/>
+                <path d="M6.40423 11.3928L10.8234 6.97372L12.0263 8.17666L7.60716 12.5958C7.45713 12.7458 7.42617 12.7737 7.39584 12.7937C7.36085 12.8167 7.3229 12.835 7.28302 12.8479C7.24845 12.8591 7.20737 12.8658 6.99649 12.8893L6 13L6.11072 12.0035C6.13415 11.7926 6.14092 11.7515 6.15211 11.717C6.16502 11.6771 6.18326 11.6392 6.20634 11.6042C6.22634 11.5738 6.25419 11.5429 6.40423 11.3928Z" fill="#F26522"/>
+                <path d="M11.4813 6.31581L12.6842 7.51875L13.7509 6.45207C14.0831 6.11989 14.0831 5.58132 13.7509 5.24914C13.4187 4.91695 12.8801 4.91695 12.5479 5.24914L11.4813 6.31581Z" fill="#F26522"/>
+            </g>
+            <defs>
+                <filter id="filter0_d_472_5452" x="0" y="0" width="20" height="20" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dy="1"/>
+                <feGaussianBlur stdDeviation="1"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0.0352941 0 0 0 0 0.0352941 0 0 0 0 0.0431373 0 0 0 0.05 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_472_5452"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_472_5452" result="shape"/>
+                </filter>
+            </defs>
+        </svg>
+    );
+}
+
 const PlusIcon = () => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -444,6 +468,15 @@ const EmailIcon = () => (
         <path d="M1.3335 4.66699L6.77678 8.47729C7.21756 8.78583 7.43795 8.94011 7.67767 8.99986C7.88943 9.05265 8.1109 9.05265 8.32265 8.99986C8.56238 8.94011 8.78277 8.78583 9.22355 8.47729L14.6668 4.66699M4.5335 13.3337H11.4668C12.5869 13.3337 13.147 13.3337 13.5748 13.1157C13.9511 12.9239 14.2571 12.618 14.4488 12.2416C14.6668 11.8138 14.6668 11.2538 14.6668 10.1337V5.86699C14.6668 4.74689 14.6668 4.18683 14.4488 3.75901C14.2571 3.38269 13.9511 3.07673 13.5748 2.88498C13.147 2.66699 12.5869 2.66699 11.4668 2.66699H4.5335C3.41339 2.66699 2.85334 2.66699 2.42552 2.88498C2.04919 3.07673 1.74323 3.38269 1.55148 3.75901C1.3335 4.18683 1.3335 4.74689 1.3335 5.86699V10.1337C1.3335 11.2538 1.3335 11.8138 1.55148 12.2416C1.74323 12.618 2.04919 12.9239 2.42552 13.1157C2.85334 13.3337 3.41339 13.3337 4.5335 13.3337Z" stroke="#F26522" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
 );
+
+const ProfileIcon3 = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="61" height="61" viewBox="0 0 61 61" fill="none">
+        <path fillRule="evenodd" clipRule="evenodd" d="M48.8398 48.52C46.2998 40.4875 39.4748 35.885 30.1073 35.885H30.0398C20.6473 35.8325 13.7873 40.4675 11.2423 48.52L10.9473 49.455L11.7823 49.965C16.6773 52.95 22.7823 54.4625 29.9223 54.4625C30.0023 54.4625 30.0823 54.4625 30.1598 54.4625C37.3998 54.4625 43.3348 52.99 48.2998 49.965L49.1348 49.455L48.8398 48.52Z" fill="white"/>
+        <path fillRule="evenodd" clipRule="evenodd" d="M30.0411 30.3146C36.8486 30.3146 42.3886 24.7771 42.3886 17.9696C42.3886 11.1596 36.8486 5.62207 30.0411 5.62207C23.2336 5.62207 17.6961 11.1596 17.6961 17.9696C17.6961 24.7771 23.2336 30.3146 30.0411 30.3146Z" fill="white"/>
+    </svg>
+);
+
+
 export { 
     Circle,
     XIcon,
@@ -481,4 +514,6 @@ export {
     NameIcon,
     PhoneIcon,
     EmailIcon,
+    ProfileIcon3,
+    EditIcon2,
 };

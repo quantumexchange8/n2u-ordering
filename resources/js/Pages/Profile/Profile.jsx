@@ -217,13 +217,13 @@ export default function Profile({ auth, rank, cashWallet, dineInWallet  }) {
                                 <div><ChevronRight2 /></div>
                             </div>
                         )}
-                        {/* <Link href={route('voucher')}> */}
-                            <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3 cursor-not-allowed opacity-50">
+                        <Link href={route('voucher')}>
+                            <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3">
                                 <div><VoucherIcon /></div>
                                 <div className="w-full text-neutral-900 text-sm font-bold">My Vouchers</div>
                                 <div><ChevronRight2 /></div>
                             </div>
-                        {/* </Link> */}
+                        </Link>
                         <Link href={route('point-history')}>
                             <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3">
                                 <div><PointIcon /></div>
@@ -243,7 +243,7 @@ export default function Profile({ auth, rank, cashWallet, dineInWallet  }) {
                                 <div><ChevronRight2 /></div>
                             </div>
                         </Link>
-                        <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3" onClick={() => Logout()}>
+                        <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3 cursor-pointer" onClick={() => Logout()}>
                             <div><LogOutIcon /></div>
                             <div className="w-full text-left text-neutral-900 text-sm font-bold">Log Out</div>
                         </div>

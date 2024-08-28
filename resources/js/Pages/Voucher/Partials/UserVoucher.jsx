@@ -13,6 +13,7 @@ export default function UserVoucher() {
     const [isLoading, setIsLoading] = useState(true);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedVoucher, setSelectedVoucher] = useState(null);
+    const [tooltipText, setTooltipText] = useState('copy');
 
     const fetchData = async () => {
         try {
@@ -41,9 +42,23 @@ export default function UserVoucher() {
     const closeVOucher = (voucherVal) => {
         setIsOpen(false)
     }
+
+    const handleCopy = (code) => {
+        const textToCopy = code;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            setTooltipText('Code Copied!');
+
+            // Revert tooltip text back to 'copy' after 2 seconds
+            setTimeout(() => {
+                setTooltipText('copy');
+            }, 2000);
+        }).catch(err => {
+            console.error('Failed to copy:', err);
+        });
+    }
     
     return (
-        <>
+        <div className="flex flex-col gap-3">
             {
                 data.length > 0 ? (
                     data.map((voucher, index) => (
@@ -94,31 +109,46 @@ export default function UserVoucher() {
                 maxHeight='xl' 
                 isOpen={isOpen} close={closeVOucher}
                 closeIcon={<XIcon />}
+                footer={
+                    <div className="text-neutral-300 text-xs text-center">
+                        Copy and paste this voucher code at order confirmation page to enjoy the deals!
+                    </div>
+                }
             >
                 {
                     selectedVoucher && (
-                        <div className="flex flex-col">
-                            <div className="flex flex-col p-3 gap-5 items-center">
+                        <div className="flex flex-col items-center gap-2">
+                            <div className="flex flex-col p-3 gap-5 items-center w-full border-b border-neutral-100">
                                 <div className="w-[100px] h-[100px] border-[0.5px] border-neutral-100">
-                                    
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png" alt="" />
                                 </div>
-                                <div className="flex flex-col gap-3">
-                                    <div className="flex flex-col">
+                                <div className="flex flex-col gap-3 w-full">
+                                    <div className="flex flex-col items-center">
                                         <div className="text-neutral-900 font-bold text-sm">{selectedVoucher.vouchers.name}</div>
                                         <div className="text-neutral-300 text-xs">Expired on {selectedVoucher.vouchers.valid_to ? formatDate(selectedVoucher.vouchers.valid_to) : 'All Time'}</div>
                                     </div>
-                                    <div>
-                                        {
-                                            selectedVoucher.description
-                                        }
-                                    </div>
+                                    <div className="text-neutral-900 text-xs w-full px-3" dangerouslySetInnerHTML={{ __html: selectedVoucher.vouchers.description }}></div>
                                 </div>
                             </div>
+
+                            <div className=" w-full flex justify-center p-3">
+                                <div className="text-lg font-bold w-full flex justify-center rounded-full border-2 border-dashed border-neutral-100 p-2.5">
+                                    {selectedVoucher.code}
+                                </div>
+                            </div>
+                            <Button
+                                size="lg"
+                                variant="black"
+                                className="w-full flex justify-center"
+                                onClick={() => handleCopy(selectedVoucher.code)}
+                            >
+                                { tooltipText ? tooltipText : 'Copy Voucher Code'}
+                            </Button>
                         </div>
                     )
                 }
 
             </Modal>
-        </>
+        </div>
     )
 }

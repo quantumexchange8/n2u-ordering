@@ -1090,7 +1090,7 @@
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   appearance: none;
   border-radius: 4px !important;
-  border: 1px solid;
+  border: 1px solid #E4E4E7;
 }
 .p-inputtext:enabled:hover {
   border-color: #3B82F6;
@@ -6287,4 +6287,8 @@
 .p-paginator-pages {
   display: flex;
   gap: 4px;
+}
+
+ol, ul, menu {
+  list-style: decimal !important;
 }

@@ -5,7 +5,7 @@ import UpdateProfileInformationForm from './Partials/UpdateProfileInformationFor
 import { Head, useForm } from '@inertiajs/react';
 import { CustomToaster } from '@/Components/CustomToaster';
 import toast from 'react-hot-toast';
-import { ChevronLeft, EmailIcon, NameIcon, PhoneIcon } from '@/Components/Icon/Outline';
+import { ChevronLeft, EditIcon, EditIcon2, EmailIcon, NameIcon, PhoneIcon, ProfileIcon2, ProfileIcon3 } from '@/Components/Icon/Outline';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import Button from '@/Components/Button';
@@ -64,8 +64,13 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
                     </div>
 
                     <div className='p-5 flex flex-col gap-3'>
-                        <div>
-                            <img src="" alt="" />
+                        <div className='w-full flex justify-center'>
+                            <div className="w-[100px] h-[100px] rounded-full relative bg-primary-200 flex items-center justify-center">
+                                <ProfileIcon3  />
+                                <div className="absolute top-1 right-0">
+                                    <EditIcon2 />
+                                </div>
+                            </div>
                         </div>
                         <form onSubmit={submit}>
                             <div className='flex flex-col gap-3'>
@@ -136,8 +141,7 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
                                     <InputError className="mt-2" message={errors.email} />
                                 </div>
                                 <div className='flex flex-col space-y-2'>
-
-                                    
+                                        
                                     <InputError className="mt-2" message={errors.email} />
                                 </div>
                                 <div className='flex flex-col space-y-2'>

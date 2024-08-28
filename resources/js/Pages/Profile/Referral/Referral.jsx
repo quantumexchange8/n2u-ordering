@@ -30,39 +30,41 @@ export default function Referral({ auth }) {
     };
 
     return (
-        <div className="flex flex-col gap-8 min-h-[80vh] overflow-auto">
-            <div className="h-40 bg-primary-500 pt-3 px-3 flex flex-col gap-3">
-                <div className="rounded-full bg-white w-6 h-6 p-1 flex justify-center items-center" onClick={handleBack}>
-                    <ChevronLeft />
-                </div>
-                <div className="bg-primary-200 p-5 rounded-[20px] flex flex-col gap-3">
-                    <div className="font-bold text-lg">
-                        Referral Code
+        <div className="flex justify-center">
+            <div className="max-w-md w-full flex flex-col gap-8 min-h-[80vh] overflow-auto">
+                <div className="h-40 bg-primary-500 pt-3 px-3 flex flex-col gap-3">
+                    <div className="rounded-full bg-white w-6 h-6 p-1 flex justify-center items-center" onClick={handleBack}>
+                        <ChevronLeft />
                     </div>
-                    <div className="flex flex-col items-center w-full gap-4 ">
-                        <div className="p-3 bg-white rounded-xl">
-                            <QRCode 
-                                value={url} 
-                                fgColor="#000000"
-                            />
+                    <div className="bg-primary-200 p-5 rounded-[20px] flex flex-col gap-3">
+                        <div className="font-bold text-lg">
+                            Referral Code
                         </div>
-                        <div className="border border-neutral-200 rounded-lg px-3 py-2 text-black font-bold flex items-center gap-2 bg-white w-full">
-                            <div className="overflow-hidden overflow-ellipsis">
-                                {url}
+                        <div className="flex flex-col items-center w-full gap-4 ">
+                            <div className="p-3 bg-white rounded-xl">
+                                <QRCode 
+                                    value={url} 
+                                    fgColor="#000000"
+                                />
                             </div>
-                            <div onClick={() => handleCopy(url)}>
-                                <CopyIcon />
+                            <div className="border border-neutral-200 rounded-lg px-3 py-2 text-black font-bold flex items-center gap-2 bg-white w-full">
+                                <div className="overflow-hidden overflow-ellipsis">
+                                    {url}
+                                </div>
+                                <div className="cursor-pointer" onClick={() => handleCopy(url)}>
+                                    <CopyIcon />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="flex flex-col">
-                
-                <div>
+                <div className="flex flex-col">
+                    
+                    <div>
 
+                    </div>
+                    <div></div>
                 </div>
-                <div></div>
             </div>
         </div>
     )

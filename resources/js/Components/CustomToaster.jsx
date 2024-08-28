@@ -65,7 +65,7 @@ const CustomToaster = ({ t }) => {
 };
 
 const getClassNames = (toast) => {
-  const baseClass = "transform  p-4 rounded-lg shadow-xl flex gap-3 w-[305px]";
+  const baseClass = "transform  p-4 rounded-lg shadow-xl flex gap-3 w-full max-w-[90vh]";
   switch (toast.type) {
     case 'success':
       return baseClass + " bg-success-100 border border-secondary-50 text-base text-secondary-800 font-bold ";

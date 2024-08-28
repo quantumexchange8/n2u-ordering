@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-export default function AllVoucher() {
+export default function AllVoucher({ user }) {
 
     const [voucherVal, setVoucherVal] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -71,23 +71,27 @@ export default function AllVoucher() {
         <CustomToaster />
         {
             voucherVal.length > 0 ? (
-                voucherVal.map((voucher, index) => (
-                    <div key={index} className="flex flex-col bg-white border border-neutral-100 rounded-[20px] shadow-input overflow-auto" onClick={() => voucherDetails(voucher)}>
-                        <div className="">
-                            <img src="/assets/voucher.png" alt="" className="w-full rounded-t-[20px]" />
-                        </div>
-                        <div className="p-3 flex items-center gap-3">
-                            <div className="flex flex-col gap-1 w-full">
-                                <div className="text-neutral-500 text-xs">Redeem with</div>
-                                <div className="text-neutral-900 text-sm font-bold">{voucher.point}</div>
+                <div className="flex flex-col gap-3">
+                    {
+                        voucherVal.map((voucher, index) => (
+                            <div key={index} className={` ${voucher.voucher_redeem === null ? 'flex' : 'hidden'} " flex-col bg-white border border-neutral-100 rounded-[20px] shadow-input overflow-auto"`} onClick={() => voucherDetails(voucher)}>
+                                <div className="">
+                                    <img src="/assets/voucher.png" alt="" className="w-full rounded-t-[20px]" />
+                                </div>
+                                <div className="p-3 flex items-center gap-3">
+                                    <div className="flex flex-col gap-1 w-full">
+                                        <div className="text-neutral-500 text-xs">Redeem with</div>
+                                        <div className="text-neutral-900 text-sm font-bold">{voucher.point}</div>
+                                    </div>
+                                    <div className="flex flex-col gap-1 w-full">
+                                        <div className="text-neutral-500 text-xs">Valid Until</div>
+                                        <div className="text-neutral-900 text-sm font-bold">{voucher.valid_type === 'all_type' ? 'All time' : formatDate(voucher.valid_to)}</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="flex flex-col gap-1 w-full">
-                                <div className="text-neutral-500 text-xs">Valid Until</div>
-                                <div className="text-neutral-900 text-sm font-bold">{voucher.valid_type === 'all_type' ? 'All time' : formatDate(voucher.valid_to)}</div>
-                            </div>
-                        </div>
-                    </div>
-                ))
+                        ))
+                    }
+                </div>
 
             ) : (
                 <div className="flex flex-col items-center">
@@ -119,7 +123,7 @@ export default function AllVoucher() {
                             className="flex justify-center w-full"
                             type="submit"
                             onClick={redeemProfile}
-                            disabled={processing}
+                            disabled={processing || selectedVoucher && (user.point < selectedVoucher.point) }
                             variant="black"
                         >
                             <span className="px-2">Redeem with {selectedVoucher &&(selectedVoucher.point)}pts</span>
@@ -133,12 +137,12 @@ export default function AllVoucher() {
                             <div>
                                 <img src="/assets/voucher.png" alt="" className="w-full" />
                             </div>
-                            <div className="flex flex-col items-center gap-3">
+                            <div className="flex flex-col items-center gap-3 box-border">
                                 <div className="flex flex-col gap-1 items-center">
                                     <div className="text-neutral-900 font-bold text-sm">{selectedVoucher.name}</div>
                                     <div className="text-neutral-300 text-xs ">Expired on{selectedVoucher.valid_to !== null ? formatDate(selectedVoucher.valid_to) : null}</div>
                                 </div>
-                                <div></div>
+                                <div className="text-neutral-900 text-xs w-full px-3" dangerouslySetInnerHTML={{ __html: selectedVoucher.description }}></div>
                             </div>
                         </div>
                     )

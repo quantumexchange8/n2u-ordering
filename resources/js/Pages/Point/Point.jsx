@@ -6,6 +6,7 @@ import { ChevronLeft, EditIcon, ProfileIcon2, XIcon2 } from "@/Components/Icon/O
 import { useState } from "react";
 import { useEffect } from "react";
 import { formatDateTime } from "@/Composables";
+import { UserVoucherImg } from "@/Components/Icon/Illustration";
 
 export default function Point({ auth }) {
 
@@ -53,18 +54,18 @@ export default function Point({ auth }) {
                             <div className="p-3 flex flex-col overflow-auto max-h-[80vh]">
                                 {
                                     data.map((point, index) => (
-                                        <div key={index} className="py-3 flex justify-between">
+                                        <div key={index} className="py-3 flex justify-between border-b border-neutral-100">
                                             <div className="flex flex-col">
                                                 <div className="text-neutral-900 text-sm font-bold">
-                                                    Points
+                                                    {point.type === 'used' ? 'Used' : 'Earned'}
                                                 </div>
                                                 <div className="text-neutral-500 text-xs">
                                                     {formatDateTime(point.created_at)}
                                                 </div>
                                             </div>
                                             <div className="flex items-center">
-                                                <div className="text-primary-500 text-sm font-bold">
-                                                    + {point.earning_point} pts
+                                                <div className="text-sm font-bold">
+                                                    {point.type === 'used' ? <span className="text-neutral-900"> -{point.earning_point}pts</span> : <span className="text-primary-500"> +{point.earning_point}pts</span>}
                                                 </div>
                                             </div>
                                         </div>
@@ -72,8 +73,13 @@ export default function Point({ auth }) {
                                 }
                             </div>
                         ) : (
-                            <div className="text-lg font-bold flex justify-center items-center">
-                                No point History Found
+                            <div className="flex flex-col gap-3 items-center">
+                                <div>
+                                    <UserVoucherImg />
+                                </div>
+                                <div className="text-xs text-neutral-500 flex justify-center items-center">
+                                    No Point History Found
+                                </div>
                             </div>
                         )
                     }

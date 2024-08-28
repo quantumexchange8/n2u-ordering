@@ -2,6 +2,7 @@ import React from "react";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { ChevronLeft, ChevronRight, ChevronRight2, CommIcon, EditIcon, LanguageIcon, LogOutIcon, MinusIcon, OrderIcon, PasswordIcon, PlusIcon, PointIcon, ProfileIcon2, QRCodeIcon, VIPIcon, VoucherIcon, WalletIcon, XIcon2 } from "@/Components/Icon/Outline";
 import Button from "@/Components/Button";
+import { formatDate } from "@/Composables";
 
 export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet }) {
 
@@ -23,7 +24,7 @@ export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet }
         <>
             <Head title="Profile"/>
             <div className="w-full flex justify-center">
-                <div className="flex flex-col gap-8 min-h-[80vh] overflow-auto">
+                <div className=" max-w-md w-full flex flex-col gap-8 min-h-[80vh] overflow-auto">
                     <div className="h-40 bg-primary-500 pt-3 px-3 flex flex-col gap-3">
                         <div className="rounded-full bg-white w-6 h-6 p-1 flex justify-center items-center" onClick={handleBack}>
                             <ChevronLeft />
@@ -32,8 +33,8 @@ export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet }
                             <div className="flex justify-between">
                                 <div className="flex flex-col gap-4">
                                     <div className="flex flex-col">
-                                        <div className="text-neutral-300 text-xs font-medium">Current Rank</div>
-                                        <div className="text-white text-lg font-bold">{rank.name}</div>
+                                        <div className="text-neutral-400 text-xs font-medium">Current Rank</div>
+                                        <div className="text-neutral-900 text-lg font-bold">{rank.name}</div>
                                     </div>
 
                                     <div className="text-base font-bold">
@@ -48,7 +49,7 @@ export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet }
                                             disabled={auth.user.rank_id === '2' || processing || rankSubsciption != null || wallet.balance < rankingFee.min_amount}
                                             onClick={submit}
                                         >
-                                            Become VIP
+                                            Join Member
                                         </Button>
                                     </div>
                                     {/* {
@@ -63,6 +64,13 @@ export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet }
                                 </div>
                             </div>
                             <div className="h-[1px] bg-zinc-600"></div>
+                            {
+                                rank.name === 'VIP' && (
+                                    <div className="text-sm text-neutral-700">
+                                        Membership Valid til <span className="font-bold">{formatDate(rankSubsciption.expired_date)}</span>
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
                     <div className="flex flex-col">
@@ -75,7 +83,7 @@ export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet }
                                         </div>
                                         <div className="text-sm flex flex-col">
                                             <div>
-                                                Become a part of VIP to get <span className="font-bold">Commission</span> when you referral a new user
+                                                Join member to get <span className="font-bold">Commission</span> when you referral a new user
                                             </div>
                                             <div>
                                                 {/* You can earn up more voucher in VIP */}
@@ -87,7 +95,7 @@ export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet }
                                         <div className="flex items-center justify-center gap-4">
                                             <div className="text-xs text-center flex flex-col gap-2 items-center">
                                                 <div><VIPIcon/></div>
-                                                <div>Become VIP</div>
+                                                <div>Become Member</div>
                                                 
                                             </div>
                                             <div><ChevronRight /></div>

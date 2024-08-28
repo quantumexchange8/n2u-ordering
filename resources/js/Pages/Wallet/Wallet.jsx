@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { formatDateTime } from "@/Composables";
 import Modal from "@/Components/Modal";
+import { UserVoucherImg } from "@/Components/Icon/Illustration";
 
 export default function Wallet({ auth, cashWallet, dineInWallet }) {
 
@@ -72,7 +73,7 @@ export default function Wallet({ auth, cashWallet, dineInWallet }) {
                             <div className="p-3 flex flex-col overflow-auto max-h-[80vh]">
                                 {
                                     data.map((transaction, index) => (
-                                        <div key={index} className="py-3 flex justify-between" onClick={() => viewDetails(transaction)}>
+                                        <div key={index} className="py-3 flex justify-between border-b border-neutral-100" onClick={() => viewDetails(transaction)}>
                                             <div className="flex flex-col">
                                                 <div className="text-neutral-900 text-sm font-bold">
                                                     {transaction.transaction_type === 'Deposit' ? 'Top Up' : transaction.transaction_type === 'Withdrawal' ? 'Withdraw' : 'Refund'}
@@ -99,8 +100,13 @@ export default function Wallet({ auth, cashWallet, dineInWallet }) {
                                 }
                             </div>
                         ) : (
-                            <div className="text-lg font-bold flex justify-center items-center">
-                                No Transaction History Found
+                            <div className="flex flex-col gap-3 items-center">
+                                <div>
+                                    <UserVoucherImg />
+                                </div>
+                                <div className="text-xs text-neutral-500 flex justify-center items-center">
+                                    No Transaction History Found
+                                </div>
                             </div>
                         )
                     }

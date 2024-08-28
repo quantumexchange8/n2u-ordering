@@ -7,7 +7,7 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import AllVoucher from "./Partials/AllVoucher";
 import UserVoucher from "./Partials/UserVoucher";
 
-export default function Voucher() {
+export default function Voucher({ user }) {
 
     
 
@@ -47,7 +47,7 @@ export default function Voucher() {
                             </TabList>
                             <TabPanels>
                                     <TabPanel className="p-4">
-                                        <AllVoucher />
+                                        <AllVoucher user={user} />
                                     </TabPanel>
                                     <TabPanel className="bg-neutral-100 p-4">
                                         <UserVoucher />
