@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class Sms123Service
 {
@@ -21,12 +22,14 @@ class Sms123Service
     {
         $message = "Your OTP code is $otp";
 
-        $response = Http::asForm()->post('https://www.sms123.net/api/send.php', [
+        $response = Http::post('https://www.sms123.net/api/send.php', [
             'apiKey' => $this->apiKey,
             'recipients' => $phoneNumber,
-            'message' => $message,
+            'messageContent' => $message,
             // 'senderid' => $this->senderId,
         ]);
+
+        Log::debug($response);
 
         return $response->successful();
     }
