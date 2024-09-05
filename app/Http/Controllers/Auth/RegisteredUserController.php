@@ -151,8 +151,8 @@ class RegisteredUserController extends Controller
 
         // Auth::login($user);
 
-        // $smsService = new Sms123Service();
-        // $smsService->sendOtp($formattedPhone, $otp);
+        $smsService = new Sms123Service();
+        $smsService->sendOtp($formattedPhone, $otp);
 
         // return redirect(route('dashboard', absolute: false));
         return redirect(route('otp'));
