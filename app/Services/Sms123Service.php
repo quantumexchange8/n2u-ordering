@@ -28,11 +28,14 @@ class Sms123Service
             'messageContent' => $message,
         ];
 
-        $response = Http::post('https://www.sms123.net/api/send.php', $params);
+        $url = 'https://www.sms123.net/api/send.php';
+        Log::debug('Sending OTP', ['url' => $url, 'params' => $params]);
 
-        Log::debug('url', Http::post('https://www.sms123.net/api/send.php', $params));
-        Log::debug('response', $response);
+        $response = Http::post($url, $params);
 
-        return $response->successful();
+        // Optionally, log the response for debugging
+        Log::debug('SMS123 Response', ['response' => $response->body()]);
+    
+        return $response->json();
     }
 }
