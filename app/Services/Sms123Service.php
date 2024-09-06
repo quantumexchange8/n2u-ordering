@@ -22,14 +22,16 @@ class Sms123Service
     {
         $message = "Your OTP code is $otp";
 
-        $response = Http::post('https://www.sms123.net/api/send.php', [
+        $params = [
             'apiKey' => $this->apiKey,
             'recipients' => $phoneNumber,
             'messageContent' => $message,
-            // 'senderid' => $this->senderId,
-        ]);
+        ];
 
-        Log::debug($response);
+        $response = Http::post('https://www.sms123.net/api/send.php', $params);
+
+        Log::debug('url', Http::post('https://www.sms123.net/api/send.php', $params));
+        Log::debug('response', $response);
 
         return $response->successful();
     }
