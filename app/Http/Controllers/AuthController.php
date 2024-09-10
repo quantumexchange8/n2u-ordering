@@ -63,7 +63,11 @@ class AuthController extends Controller
 
                 Auth::login($member);
                 return redirect(route('dashboard', absolute: false));
+            } else {
+                return redirect()->back()->withErrors(['otp' => 'Invalid OTP']);
             }
+        } else {
+            return redirect()->back()->withErrors(['otp' => 'Invalid OTP']);
         }
         
     }
