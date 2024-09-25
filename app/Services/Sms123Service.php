@@ -15,6 +15,7 @@ class Sms123Service
     {
         // $this->username = env('SMS123_USERNAME');
         $this->apiKey = env('SMS123_API_KEY');
+        Log::debug('SMS123 API Key', ['apiKey' => $this->apiKey]);
         // $this->senderId = env('SMS123_SENDER_ID');
     }
 
