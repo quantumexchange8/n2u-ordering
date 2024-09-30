@@ -12,9 +12,11 @@ import Button from '@/Components/Button';
 import InputError from '@/Components/InputError';
 import { useState } from 'react';
 import InputIconWrapper from '@/Components/InputIconWrapper';
+import { useTranslation } from "react-i18next";
 
 export default function Edit({ auth, mustVerifyEmail, status }) {
 
+    const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(true);
 
     const handleBack = () => {
@@ -56,7 +58,7 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
                             <ChevronLeft />
                         </div>
                         <div className="text-neutral-900 font-bold text-sm">
-                            Edit Profile
+                            {t('edit_profile')}
                         </div>
                         <div className="w-6 h-6">
                             
@@ -151,7 +153,7 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
                                         disabled={processing}
                                         type='submit'
                                     >
-                                        Save Changes
+                                        {t('save_changes')}
                                     </Button>
                                 </div>
                             </div>

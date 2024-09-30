@@ -9,8 +9,10 @@ import { useEffect } from "react";
 import { formatDateTime } from "@/Composables";
 import Modal from "@/Components/Modal";
 import { UserVoucherImg } from "@/Components/Icon/Illustration";
+import { useTranslation } from "react-i18next";
 
 export default function Wallet({ auth, cashWallet, dineInWallet }) {
+    const { t } = useTranslation();
 
     const handleBack = () => {
         window.history.back(); // Go back in the browser history
@@ -62,7 +64,7 @@ export default function Wallet({ auth, cashWallet, dineInWallet }) {
                             <ChevronLeft />
                         </div>
                         <div className="text-neutral-900 font-bold text-sm">
-                            Wallet Transaction
+                            {t('wallet_transaction')}
                         </div>
                         <div className="w-6 h-6">
                                 
@@ -76,7 +78,7 @@ export default function Wallet({ auth, cashWallet, dineInWallet }) {
                                         <div key={index} className="py-3 flex justify-between border-b border-neutral-100" onClick={() => viewDetails(transaction)}>
                                             <div className="flex flex-col">
                                                 <div className="text-neutral-900 text-sm font-bold">
-                                                    {transaction.transaction_type === 'Deposit' ? 'Top Up' : transaction.transaction_type === 'Withdrawal' ? 'Withdraw' : 'Refund'}
+                                                    {transaction.transaction_type === 'Deposit' ? t('top_up') : transaction.transaction_type === 'Withdrawal' ? t('withdraw') : 'Refund'}
                                                 </div>
                                                 <div className="text-neutral-500 text-xs">
                                                     {formatDateTime(transaction.created_at)}
@@ -105,7 +107,7 @@ export default function Wallet({ auth, cashWallet, dineInWallet }) {
                                     <UserVoucherImg />
                                 </div>
                                 <div className="text-xs text-neutral-500 flex justify-center items-center">
-                                    No Transaction History Found
+                                    {t('no_transaction_history_found')}
                                 </div>
                             </div>
                         )
@@ -114,36 +116,39 @@ export default function Wallet({ auth, cashWallet, dineInWallet }) {
             </div>
 
             <Modal
-                title='Transaction Details'
+                title={t('transaction_details')}
                 maxWidth='xl'
                 maxHeight='xl' 
                 isOpen={detailModal} close={closeViewDetails}
                 closeIcon={<XIcon />}
                 
             >
+                <Button>
+                    
+                </Button>
                 {selectedTransaction && (
                     <div className="p-3 flex flex-col gap-2">
                         <div className="flex justify-between">
                             <div className="text-neutral-500 text-sm">
-                                Transaction Type
+                                {t('transaction_type')}
                             </div>
                             <div className="font-bold text-neutral-900 text-sm">{selectedTransaction.transaction_type}</div>
                         </div>
                         <div className="flex justify-between">
                             <div className="text-neutral-500 text-sm">
-                                Payment Method
+                                {t('payment_method')}
                             </div>
                             <div className="font-bold text-neutral-900 text-sm">{selectedTransaction.payment_type}</div>
                         </div>
                         <div className="flex justify-between">
                             <div className="text-neutral-500 text-sm">
-                                Date and Time
+                                {t('date_and_time')}
                             </div>
                             <div className="font-bold text-neutral-900 text-sm">{formatDateTime(selectedTransaction.created_at)}</div>
                         </div>
                         <div className="flex justify-between">
                             <div className="text-neutral-500 text-sm">
-                                Status
+                                {t('status')}
                             </div>
                             <div className="font-bold text-neutral-900 text-sm">{selectedTransaction.status}</div>
                         </div>
@@ -151,7 +156,7 @@ export default function Wallet({ auth, cashWallet, dineInWallet }) {
                             selectedTransaction.remark !== null && (
                                 <div className="flex justify-between">
                                     <div className="text-neutral-500 text-sm">
-                                        Remark
+                                        {t('remark')}
                                     </div>
                                     <div className="font-bold text-neutral-900 text-sm">{selectedTransaction.remark}</div>
                                 </div>
@@ -161,7 +166,7 @@ export default function Wallet({ auth, cashWallet, dineInWallet }) {
                             selectedTransaction.transaction_date && (
                                 <div className="flex justify-between">
                                     <div className="text-neutral-500 text-sm">
-                                        Approval Date
+                                        {t('approval_date')}
                                     </div>
                                     <div className="font-bold text-neutral-900 text-sm">{formatDateTime(selectedTransaction.transaction_date)}</div>
                                 </div>

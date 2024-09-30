@@ -9,9 +9,11 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 export default function AllVoucher({ user }) {
 
+    const { t } = useTranslation();
     const [voucherVal, setVoucherVal] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isOpen, setIsOpen] = useState(false);
@@ -80,11 +82,11 @@ export default function AllVoucher({ user }) {
                                 </div>
                                 <div className="p-3 flex items-center gap-3">
                                     <div className="flex flex-col gap-1 w-full">
-                                        <div className="text-neutral-500 text-xs">Redeem with</div>
+                                        <div className="text-neutral-500 text-xs">{t('redeem_with')}</div>
                                         <div className="text-neutral-900 text-sm font-bold">{voucher.point}</div>
                                     </div>
                                     <div className="flex flex-col gap-1 w-full">
-                                        <div className="text-neutral-500 text-xs">Valid Until</div>
+                                        <div className="text-neutral-500 text-xs">{t('valid_until')}</div>
                                         <div className="text-neutral-900 text-sm font-bold">{voucher.valid_type === 'all_type' ? 'All time' : formatDate(voucher.valid_to)}</div>
                                     </div>
                                 </div>
@@ -100,10 +102,10 @@ export default function AllVoucher({ user }) {
                     </div>
                     <div className="flex flex-col gap-2 items-center">
                         <div className="text-neutral-900 text-base font-bold">
-                            No Vouchers Yet
+                            {t('no_vouchers_yet')}
                         </div>
                         <div className="text-neutral-500 text-xs text-center">
-                            Stay tuned! New vouchers will be available soon. Keep an eye out for exciting offers coming your way!
+                            {t('stay_tuned')}
                         </div>
                     </div>
                 </div>
@@ -111,7 +113,7 @@ export default function AllVoucher({ user }) {
         }
             
             <Modal
-                title='Voucher Details'
+                title={t('voucher_details')}
                 maxWidth='xl'
                 maxHeight='xl' 
                 isOpen={isOpen} close={closeVoucher}
@@ -126,7 +128,7 @@ export default function AllVoucher({ user }) {
                             disabled={processing || selectedVoucher && (user.point < selectedVoucher.point) }
                             variant="black"
                         >
-                            <span className="px-2">Redeem with {selectedVoucher &&(selectedVoucher.point)}pts</span>
+                            <span className="px-2">{t('redeem_with')} {selectedVoucher &&(selectedVoucher.point)}pts</span>
                         </Button>
                     </div>
                 }

@@ -13,6 +13,8 @@ import TextInput from "@/Components/TextInput";
 import { InputNumber } from 'primereact/inputnumber';
 import toast from "react-hot-toast";
 import { CustomToaster } from "@/Components/CustomToaster";
+import { useTranslation } from "react-i18next";
+
 
 const fixAmount = [
     {value: 10},
@@ -23,6 +25,8 @@ const fixAmount = [
 ]
 
 export default function Deposit({ dineInWallet }) {
+
+    const { t } = useTranslation();
     
     const [isLoading, setIsLoading] = useState(true);
 
@@ -68,7 +72,7 @@ export default function Deposit({ dineInWallet }) {
                             </div>
                         </Link>
                         <div className="text-neutral-900 font-bold text-sm">
-                            Wallet Deposit
+                            {t('wallet_deposit')}
                         </div>
                         <div className="w-6 h-6">
                                 
@@ -77,11 +81,11 @@ export default function Deposit({ dineInWallet }) {
 
                     <div className="flex flex-col gap-3 p-3">
                         <div className="text-neutral-900 font-bold">
-                            Balance RM <span className="text-lg">{dineInWallet.balance}</span>
+                            {t('balance')} RM <span className="text-lg">{dineInWallet.balance}</span>
                         </div>
                         <div className="flex flex-col space-y-2">
                             <div className="flex flex-row items-center gap-1">
-                                <InputLabel value='Deposit Amount (RM)' /> <span className="text-red-500">*</span>
+                                <InputLabel> {t('deposit_amount')} </InputLabel><span className="text-red-500">*</span>
                             </div>
                             <div>
                                 <InputNumber 
@@ -115,7 +119,7 @@ export default function Deposit({ dineInWallet }) {
                             onClick={submit}
                             disabled={processing || data.amount === null || data.amount === 0.00}
                         >
-                            Top Up 
+                            {t('top_up')} 
                         </Button>
                     </div>
                 </div>

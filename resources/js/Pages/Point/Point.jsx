@@ -7,8 +7,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { formatDateTime } from "@/Composables";
 import { UserVoucherImg } from "@/Components/Icon/Illustration";
+import { useTranslation } from "react-i18next";
 
 export default function Point({ auth }) {
+    const { t } = useTranslation();
 
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -43,7 +45,7 @@ export default function Point({ auth }) {
                             </div>
                         </Link>
                         <div className="text-neutral-900 font-bold text-sm">
-                            Point History
+                            {t('point_history')}
                         </div>
                         <div className="w-6 h-6">
                                 
@@ -57,7 +59,7 @@ export default function Point({ auth }) {
                                         <div key={index} className="py-3 flex justify-between border-b border-neutral-100">
                                             <div className="flex flex-col">
                                                 <div className="text-neutral-900 text-sm font-bold">
-                                                    {point.type === 'used' ? 'Used' : 'Earned'}
+                                                    {point.type === 'used' ? t('used') : t('earned')}
                                                 </div>
                                                 <div className="text-neutral-500 text-xs">
                                                     {formatDateTime(point.created_at)}
@@ -78,7 +80,7 @@ export default function Point({ auth }) {
                                     <UserVoucherImg />
                                 </div>
                                 <div className="text-xs text-neutral-500 flex justify-center items-center">
-                                    No Point History Found
+                                    {t('no_point_history_found')}
                                 </div>
                             </div>
                         )

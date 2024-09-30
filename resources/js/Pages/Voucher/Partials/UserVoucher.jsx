@@ -6,9 +6,11 @@ import { formatDate } from "@/Composables";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function UserVoucher() {
 
+    const { t } = useTranslation();
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isOpen, setIsOpen] = useState(false);
@@ -78,7 +80,7 @@ export default function UserVoucher() {
                                             className="py-2"
                                             onClick={() => voucherDetails(voucher)}
                                         >
-                                            use
+                                            {t('use')}
                                         </Button>
                                     </div>
                                 </div>
@@ -93,10 +95,10 @@ export default function UserVoucher() {
                         </div>
                         <div className="flex flex-col gap-2 items-center">
                             <div className="text-neutral-900 text-base font-bold">
-                                No Vouchers Available
+                                {t('no_voucher')}
                             </div>
                             <div className="text-neutral-500 text-xs text-center">
-                                Looks like you don’t have any vouchers at the moment. Check back soon or keep earning points to unlock exciting offers!
+                                {t('no_voucher_desc')}
                             </div>
                         </div>
                     </div>

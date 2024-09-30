@@ -16,7 +16,7 @@ export default function AuthAccount() {
             <div className='flex flex-col'>
                 <div className=' sticky p-3 flex justify-center'>
                     {/* <div><XIcon /></div> */}
-                    <div className='text-neutral-900 text-sm font-bold'>Member Account</div>
+                    <div className='text-neutral-900 text-sm font-bold'>{t('member_account')}</div>
                     {/* <div></div> */}
                 </div>
                 <div className='flex flex-col gap-4 max-h-[80vh] overflow-auto'>
@@ -28,12 +28,12 @@ export default function AuthAccount() {
                                         <Tab
                                             className="transition-all duration-300 rounded-full py-2 px-3 text-xs text-neutral-500 font-bold focus:outline-none data-[selected]:bg-primary-500 data-[selected]:text-white data-[focus]:outline-1 data-[focus]:outline-white"
                                         >
-                                            <span className='px-1.5'>Log In</span>
+                                            <span className='px-1.5'>{t('login')}</span>
                                         </Tab>
                                         <Tab
                                             className="transition-all duration-300 rounded-full py-2 px-3 text-xs text-neutral-500 font-bold focus:outline-none data-[selected]:bg-primary-500 data-[selected]:text-white data-[focus]:outline-1 data-[focus]:outline-white"
                                         >
-                                            <span className='px-2.5'>Sign Up</span>
+                                            <span className='px-2.5'>{t('sign_up')}</span>
                                         </Tab>
                                     </div>
                                 </TabList>
@@ -56,7 +56,7 @@ export default function AuthAccount() {
                                 className='flex justify-center'
                                 disabled={true}
                             >
-                                Continue as guest
+                                {t('continue_as_guest')}
                             </Button>
                             <Button
                                 variant='white'
@@ -64,11 +64,11 @@ export default function AuthAccount() {
                                 className='flex justify-center'
                                 disabled={true}
                             >
-                                Continue as staff
+                                {t('continue_as_staff')}
                             </Button>
                         </div>
                         <div className='text-neutral-500 text-xss leading-7'>
-                            By continuing,  you agree to Our <span className='text-primary-500'>User Agreement</span> and <span className='text-primary-500'>Privacy Policy</span> applies.
+                            {t('by_continuing_you_agree_to_our')} <span className='text-primary-500'>{t('user_agreement')}</span> {t('and')} <span className='text-primary-500'> {t('privacy_policy')}</span> {t('applies')}.
                         </div>
                     </div>
                 </div>

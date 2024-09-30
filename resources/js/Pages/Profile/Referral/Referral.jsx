@@ -3,8 +3,10 @@ import { Link } from "@inertiajs/react";
 import { ChevronLeft, ChevronRight, ChevronRight2, CommIcon, CopyIcon, EditIcon, LanguageIcon, LogOutIcon, MinusIcon, OrderIcon, PasswordIcon, PlusIcon, PointIcon, ProfileIcon2, QRCodeIcon, VIPIcon, VoucherIcon, WalletIcon, XIcon2 } from "@/Components/Icon/Outline";
 import Button from "@/Components/Button";
 import { QRCode } from 'react-qrcode-logo';
+import { useTranslation } from "react-i18next";
 
 export default function Referral({ auth }) {
+    const { t } = useTranslation();
 
     const [tooltipText, setTooltipText] = useState('copy');
 
@@ -38,7 +40,7 @@ export default function Referral({ auth }) {
                     </div>
                     <div className="bg-primary-200 p-5 rounded-[20px] flex flex-col gap-3">
                         <div className="font-bold text-lg">
-                            Referral Code
+                        {t('referral_code')}
                         </div>
                         <div className="flex flex-col items-center w-full gap-4 ">
                             <div className="p-3 bg-white rounded-xl">

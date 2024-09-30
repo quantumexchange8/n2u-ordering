@@ -3,8 +3,10 @@ import { Head, Link, useForm } from "@inertiajs/react";
 import { ChevronLeft, ChevronRight, ChevronRight2, CommIcon, EditIcon, LanguageIcon, LogOutIcon, MinusIcon, OrderIcon, PasswordIcon, PlusIcon, PointIcon, ProfileIcon2, QRCodeIcon, VIPIcon, VoucherIcon, WalletIcon, XIcon2 } from "@/Components/Icon/Outline";
 import Button from "@/Components/Button";
 import { formatDate } from "@/Composables";
+import { useTranslation } from "react-i18next";
 
 export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet, settingFee }) {
+    const { t } = useTranslation();
 
     const handleBack = () => {
         window.history.back(); // Go back in the browser history
@@ -33,12 +35,12 @@ export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet, 
                             <div className="flex justify-between">
                                 <div className="flex flex-col gap-4">
                                     <div className="flex flex-col">
-                                        <div className="text-neutral-400 text-xs font-medium">Current Rank</div>
+                                        <div className="text-neutral-400 text-xs font-medium">{t('current_rank')}</div>
                                         <div className="text-neutral-900 text-lg font-bold">{rank.name}</div>
                                     </div>
 
                                     <div className="text-base font-bold">
-                                        RM {settingFee.value}/year
+                                        RM {settingFee.value}/{t('year')}
                                     </div>
                                 </div>
                                 <div className="flex flex-col gap-2">
@@ -49,7 +51,7 @@ export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet, 
                                             disabled={auth.user.rank_id === '2' || processing || rankSubsciption != null || wallet.balance < settingFee.value}
                                             onClick={submit}
                                         >
-                                            Join Member
+                                            {t('join_member')}
                                         </Button>
                                     </div>
                                     {/* {
@@ -67,7 +69,7 @@ export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet, 
                             {
                                 rank.name === 'VIP' && (
                                     <div className="text-sm text-neutral-700">
-                                        Membership Valid til <span className="font-bold">{formatDate(rankSubsciption.expired_date)}</span>
+                                        {t('membership_valid_til')} <span className="font-bold">{formatDate(rankSubsciption.expired_date)}</span>
                                     </div>
                                 )
                             }

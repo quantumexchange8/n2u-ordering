@@ -21,10 +21,13 @@
     },
     "dependencies": {
         "@heroicons/react": "^2.1.5",
+        "i18next": "^23.15.1",
+        "i18next-http-backend": "^2.6.1",
         "primeicons": "^7.0.0",
         "primereact": "^10.8.2",
         "quill": "^2.0.2",
         "react-hot-toast": "^2.4.1",
+        "react-i18next": "^15.0.2",
         "react-qrcode-logo": "^3.0.0"
     }
 }

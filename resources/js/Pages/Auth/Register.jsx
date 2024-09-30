@@ -8,9 +8,10 @@ import { InputMask } from "primereact/inputmask";
 import Button from '@/Components/Button';
 import { Dropdown } from 'primereact/dropdown';
 import { useEffect } from 'react';
+import { useTranslation } from "react-i18next";
 
 export default function Register({ referral_code, countries }) {
-    
+    const { t } = useTranslation();
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         phone: '',
@@ -63,7 +64,7 @@ export default function Register({ referral_code, countries }) {
             <div className='flex flex-col'>
                 <div className=' sticky p-3 flex justify-center'>
                     {/* <div><XIcon /></div> */}
-                    <div className='text-neutral-900 text-sm font-bold'>Register Account</div>
+                    <div className='text-neutral-900 text-sm font-bold'>{t('register_account')}</div>
                     {/* <div></div> */}
                 </div>
             </div>
@@ -73,7 +74,7 @@ export default function Register({ referral_code, countries }) {
                         <form onSubmit={submit}>
                             <div>
                                 <div className='flex items-center gap-1'>
-                                    <InputLabel htmlFor="name" value="Username" /><span className='text-error-500 text-xs font-medium'>*</span>
+                                    <InputLabel htmlFor="name">{t('username')}</InputLabel><span className='text-error-500 text-xs font-medium'>*</span>
                                 </div>
 
                                 <TextInput
@@ -91,7 +92,7 @@ export default function Register({ referral_code, countries }) {
 
                             <div className="mt-4">
                                 <div className='flex items-center gap-1'>
-                                    <InputLabel htmlFor="email" value="Email" /><span className='text-error-500 text-xs font-medium'>*</span>
+                                    <InputLabel htmlFor="email">{t('email')}</InputLabel><span className='text-error-500 text-xs font-medium'>*</span>
                                 </div>
 
                                 <TextInput
@@ -108,7 +109,7 @@ export default function Register({ referral_code, countries }) {
                             </div>
 
                             <div className="mt-4">
-                                <InputLabel htmlFor="phone_number" value="Phone Number" />
+                                <InputLabel htmlFor="phone_number">{t('phone_number')}</InputLabel>
 
                                 {/* <InputMask id="phone" mask="(999) 999-9999" placeholder="(019) 999-9999" onChange={(e) => setData('phone_number', e.target.value)} className='w-full rounded-xl border-neutral-100 focus:border-primary-500 focus:outline-none focus:ring-0'></InputMask> */}
                                 <div className='flex items-center gap-2'>
@@ -143,7 +144,7 @@ export default function Register({ referral_code, countries }) {
                             </div>
 
                             <div className="mt-4">
-                                <InputLabel htmlFor="password" value="Password" />
+                                <InputLabel htmlFor="password" value={t('password')} />
 
                                 <TextInput
                                     id="password"
@@ -161,7 +162,7 @@ export default function Register({ referral_code, countries }) {
 
                             <div className="flex items-center justify-end mt-4">
                                 <Button size='sm' className="w-full flex justify-center" disabled={processing || !data.name || !data.phone || !data.password} >
-                                    Register
+                                    {t('register')}
                                 </Button>
                             </div>
                         </form>
@@ -176,7 +177,7 @@ export default function Register({ referral_code, countries }) {
                                 className='flex justify-center w-full'
                                 disabled={false}
                             >
-                                Back to Log In
+                                {t('back_to_log_in')}
                             </Button>
                         </Link>
                     </div>

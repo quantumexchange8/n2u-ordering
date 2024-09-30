@@ -34,7 +34,7 @@ export default function Otp({ phone }) {
         <GuestLayout>
             <div className="flex flex-col py-3 px-4">
                 <div className='sticky p-3 flex justify-center'>
-                    <div className='text-neutral-900 text-sm font-bold'>Code Verification</div>
+                    <div className='text-neutral-900 text-sm font-bold'>{t('code_verification')}</div>
                 </div>
                 <form onSubmit={submit}>
                     <div className="flex flex-col gap-5">
@@ -59,7 +59,7 @@ export default function Otp({ phone }) {
                             <div>
                                 <Link href={route('login')}>
                                     <Button variant="white" size="sm">
-                                        Back to login
+                                        {t('back_to_login')}
                                     </Button>
                                 </Link>
                             </div>
@@ -69,7 +69,7 @@ export default function Otp({ phone }) {
                                     disabled={processing}
                                     type="submit"
                                 >
-                                    Verify
+                                    {t('verify')}
                                 </Button>
                             </div>
                         </div>

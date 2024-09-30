@@ -9,9 +9,10 @@ import { Link, useForm } from "@inertiajs/react";
 import React from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 export default function Password() {
-
+    const { t } = useTranslation();
     const [showPassword, setShowPassword ] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword ] = useState(false);
 
@@ -49,7 +50,7 @@ export default function Password() {
                             </div>
                         </Link>
                         <div className="text-neutral-900 font-bold text-sm">
-                            Change Password
+                            {t('change_password')}
                         </div>
                         <div className="w-6 h-6">
                                 
@@ -59,7 +60,7 @@ export default function Password() {
                     <div className="flex flex-col gap-10 p-3">
                         <div className="flex flex-col gap-3">
                             <div className="flex flex-col space-y-1">
-                                <InputLabel value='Password'/>
+                                <InputLabel> {t('password')} </InputLabel>
                                 <InputIconWrapper>
                                     <TextInput
                                         id="password"
@@ -77,7 +78,7 @@ export default function Password() {
                                 <InputError message={errors.password} className="mt-2"/>
                             </div>
                             <div className="flex flex-col space-y-1">
-                                <InputLabel value='Confirm Password'/>
+                                <InputLabel> {t('confirm_password')} </InputLabel>
                                 <InputIconWrapper>
                                     <TextInput
                                         id="password_confirmation"
@@ -100,7 +101,7 @@ export default function Password() {
                                 className="flex justify-center w-full"
                                 onClick={submitForm}
                             >
-                                Save Password
+                                {t('save_password')}
                             </Button>
                         </div>
                     </div>

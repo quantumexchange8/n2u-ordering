@@ -11,9 +11,11 @@ import { useEffect, useState } from 'react';
 import InputIconWrapper from '@/Components/InputIconWrapper';
 import { EyeOff, EyeOn } from '@/Components/Icon/Outline';
 import { Dropdown } from 'primereact/dropdown';
+import { useTranslation } from "react-i18next";
+
 
 export default function Login({ status, canResetPassword, countries }) {
-
+    const { t } = useTranslation();
     const [showPassword, setShowPassword ] = useState(false);
     // const [dialCode, setDialCode] = useState(null);
 
@@ -68,7 +70,7 @@ export default function Login({ status, canResetPassword, countries }) {
             <div className='flex flex-col'>
                 <div className=' sticky p-3 flex justify-center'>
                     {/* <div><XIcon /></div> */}
-                    <div className='text-neutral-900 text-sm font-bold'>Member Account</div>
+                    <div className='text-neutral-900 text-sm font-bold'>{t('member_account')}</div>
                     {/* <div></div> */}
                 </div>
             </div>
@@ -77,7 +79,8 @@ export default function Login({ status, canResetPassword, countries }) {
                     <div className="w-full max-w-md">
                         <form onSubmit={submit}>
                             <div className='flex flex-col space-y-1'>
-                                <InputLabel htmlFor="phone" value="Phone Number" />
+                                <InputLabel htmlFor="phone">{t('phone_number')}</InputLabel>
+
 
                                 <div className='flex items-center gap-2 '>
                                     <Dropdown 
@@ -110,7 +113,7 @@ export default function Login({ status, canResetPassword, countries }) {
                             </div>
 
                             <div className="mt-4">
-                                <InputLabel htmlFor="password" value="Password" />
+                                <InputLabel htmlFor="password">{t('password')}</InputLabel>
 
                                 <InputIconWrapper>
                                     <TextInput
@@ -141,7 +144,7 @@ export default function Login({ status, canResetPassword, countries }) {
                                             className="pointer-events-none inline-block size-5 translate-x-0 rounded-full bg-white ring-0 shadow-lg transition duration-200 ease-in-out group-data-[checked]:translate-x-7"
                                         />
                                     </Switch>
-                                    <span className="ms-2 text-sm text-gray-600">Remember me</span>
+                                    <span className="ms-2 text-sm text-gray-600">{t('remember_me')}</span>
                                 </label>
                                 {/* <Link
                                     href={route('password.request')}
@@ -153,7 +156,7 @@ export default function Login({ status, canResetPassword, countries }) {
 
                             <div className="flex items-center justify-end mt-4">
                                 <Button className="flex justify-center w-full" size='sm' disabled={processing}>
-                                    Log in
+                                    {t('login')}
                                 </Button>
                             </div>
                         </form>
@@ -168,7 +171,7 @@ export default function Login({ status, canResetPassword, countries }) {
                                 className='flex justify-center w-full'
                                 disabled={false}
                             >
-                                Register
+                                {t('register')}
                             </Button>
                         </Link>
                         <Link href={route('dashboard')}>
@@ -178,12 +181,12 @@ export default function Login({ status, canResetPassword, countries }) {
                                 className='flex justify-center w-full'
                                 disabled={false}
                             >
-                                Continue as guest
+                                {t('continue_as_guest')}
                             </Button>
                         </Link>
                     </div>
                     <div className='text-neutral-500 text-xss leading-7'>
-                        By continuing,  you agree to Our <span className='text-primary-500'>User Agreement</span> and <span className='text-primary-500'>Privacy Policy</span> applies.
+                        {t('by_continuing_you_agree_to_our')} <span className='text-primary-500'>{t('user_agreement')}</span> {t('and')} <span className='text-primary-500'> {t('privacy_policy')}</span> {t('applies')}.
                     </div>
                 </div>
             </div>

@@ -13,6 +13,7 @@ import TextInput from "@/Components/TextInput";
 import { InputNumber } from 'primereact/inputnumber';
 import toast from "react-hot-toast";
 import { CustomToaster } from "@/Components/CustomToaster";
+import { useTranslation } from "react-i18next";
 
 const fixAmount = [
     {value: 10},
@@ -23,6 +24,7 @@ const fixAmount = [
 ]
 
 export default function Withdrawal({ cashWallet }) {
+    const { t } = useTranslation();
     
     const [isLoading, setIsLoading] = useState(true);
 
@@ -68,7 +70,7 @@ export default function Withdrawal({ cashWallet }) {
                             </div>
                         </Link>
                         <div className="text-neutral-900 font-bold text-sm">
-                            Wallet Withdrawal
+                            {t('wallet_withdrawal')}
                         </div>
                         <div className="w-6 h-6">
                                 
@@ -77,11 +79,11 @@ export default function Withdrawal({ cashWallet }) {
 
                     <div className="flex flex-col gap-3 p-3">
                         <div className="text-neutral-900 font-bold">
-                            Balance RM <span className="text-lg">{cashWallet.balance}</span>
+                            {t('balance')} RM <span className="text-lg">{cashWallet.balance}</span>
                         </div>
                         <div className="flex flex-col space-y-2">
                             <div className="flex flex-row items-center gap-1">
-                                <InputLabel value='Withdraw Amount (RM)' /> <span className="text-red-500">*</span>
+                                <InputLabel> {t('withdraw_amount')} (RM) </InputLabel> <span className="text-red-500">*</span>
                             </div>
                             <div>
                                 <InputNumber 
@@ -97,7 +99,7 @@ export default function Withdrawal({ cashWallet }) {
                         {
                             data.amount > cashWallet.balance && (
                                 <div className="text-xs text-error-600 font-medium">
-                                    Withdrawal amount exceeded cash wallet balance
+                                    {t('withdrawal_amount_exceeded_cash_wallet_balance')}
                                 </div>
                             )
                         }
@@ -111,7 +113,7 @@ export default function Withdrawal({ cashWallet }) {
                             onClick={submit}
                             disabled={processing || data.amount === null || data.amount === 0.00 || data.amount > cashWallet.balance}
                         >
-                            Withdraw
+                            {t('withdraw')}
                         </Button>
                     </div>
                 </div>
