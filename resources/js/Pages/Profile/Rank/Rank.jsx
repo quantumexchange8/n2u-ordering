@@ -26,16 +26,16 @@ export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet, 
         <>
             <Head title="Profile"/>
             <div className="w-full flex justify-center">
-                <div className=" max-w-md w-full flex flex-col gap-8 min-h-[80vh] overflow-auto">
-                    <div className="h-40 bg-primary-500 pt-3 px-3 flex flex-col gap-3">
+                <div className="relative max-w-md w-full flex flex-col gap-14 min-h-[90vh] overflow-auto">
+                    <div className="h-40 bg-primary-500 pt-3 px-3 flex flex-col gap-4">
                         <div className="rounded-full bg-white w-6 h-6 p-1 flex justify-center items-center" onClick={handleBack}>
                             <ChevronLeft />
                         </div>
-                        <div className="bg-primary-200 p-5 rounded-[20px] flex flex-col gap-3">
+                        <div className="bg-primary-200 px-5 py-4 rounded-[20px] flex flex-col gap-3">
                             <div className="flex justify-between">
-                                <div className="flex flex-col gap-4">
+                                <div className="flex flex-col gap-2">
                                     <div className="flex flex-col">
-                                        <div className="text-neutral-400 text-xs font-medium">{t('current_rank')}</div>
+                                        <div className="text-neutral-500 text-xs font-semibold">{t('current_rank')}</div>
                                         <div className="text-neutral-900 text-lg font-bold">{rank.name}</div>
                                     </div>
 
@@ -44,16 +44,20 @@ export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet, 
                                     </div>
                                 </div>
                                 <div className="flex flex-col gap-2">
-                                    <div>
-                                        <Button
-                                            variant="white"
-                                            size="sm"
-                                            disabled={auth.user.rank_id === '2' || processing || rankSubsciption != null || wallet.balance < settingFee.value}
-                                            onClick={submit}
-                                        >
-                                            {t('join_member')}
-                                        </Button>
-                                    </div>
+                                    {
+                                        auth.user.rank_id === '1' && (
+                                            <div>
+                                                <Button
+                                                    variant="white"
+                                                    size="sm"
+                                                    disabled={auth.user.rank_id === '2' || processing || rankSubsciption != null || wallet.balance < settingFee.value}
+                                                    onClick={submit}
+                                                >
+                                                    {t('join_member')}
+                                                </Button>
+                                            </div>
+                                        )
+                                    }
                                     {/* {
                                         wallet.balance < rankingFee.min_amount && (
                                             <div className="w-full flex justify-end">
@@ -114,8 +118,27 @@ export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet, 
                                     </div>
                                 </div>
                             ) : (
-                                <div>
-                                    
+                                <div className="flex flex-col gap-4 px-3">
+                                    <div className="flex flex-col gap-2">
+                                        <div className="font-bold text-lg">How it works?</div>
+                                        <div className="flex items-center justify-center gap-4">
+                                            <div className="text-xs text-center flex flex-col gap-2 items-center">
+                                                <div><VIPIcon/></div>
+                                                <div>Become Member</div>
+                                                
+                                            </div>
+                                            <div><ChevronRight /></div>
+                                            <div className="text-xs text-center flex flex-col gap-2 items-center">
+                                                <div><QRCodeIcon /></div>
+                                                <div>Referral to your friend</div>
+                                            </div>
+                                            <div><ChevronRight /></div>
+                                            <div className="text-xs text-center flex flex-col gap-2 items-center">
+                                                <div><CommIcon /></div>
+                                                <div>You get commission</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             )
                         }
@@ -124,6 +147,21 @@ export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet, 
                         </div>
                         <div></div>
                     </div>
+
+                    {
+                        auth.user.rank_id === '2' && (
+                            <div className="absolute bottom-0 right-3 animate-bounce">
+                                <Link href={route('referral')} >
+                                <Button
+                                    size='sm'
+                                    className='flex justify-center w-full gap-1'
+                                >
+                                    <QRCodeIcon /> <span>Referral Now</span>
+                                </Button>
+                                </Link>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </>
