@@ -60,9 +60,11 @@ export default function Wallet({ auth, cashWallet, dineInWallet }) {
             <div className="w-full flex justify-center">
                 <div className="max-w-md w-full flex flex-col min-h-[80vh] overflow-auto">
                     <div className="bg-white py-3 px-3 flex justify-between items-center gap-3 shadow-box">
-                        <div className="rounded-full bg-white w-6 h-6 p-1 flex justify-center items-center" onClick={handleBack}>
-                            <ChevronLeft />
-                        </div>
+                        <Link href={route('profile')}>
+                            <div className="rounded-full bg-white w-6 h-6 p-1 flex justify-center items-center">
+                                <ChevronLeft />
+                            </div>
+                        </Link>
                         <div className="text-neutral-900 font-bold text-sm">
                             {t('wallet_transaction')}
                         </div>

@@ -252,7 +252,7 @@ export default function Profile({ auth, rank, cashWallet, dineInWallet  }) {
                                 <div><ChevronRight2 /></div>
                             </div>
                         </Link>
-                        <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3" onClick={() => toggleLang()}>
+                        <div className="border-b-[0.5px] border-neutral-100 py-3 flex items-center gap-3 cursor-pointer" onClick={() => toggleLang()}>
                             <div><LanguageIcon /></div>
                             <div className="w-full text-neutral-900 text-sm font-bold">{t('language')}</div>
                             <div><ChevronRight2 /></div>

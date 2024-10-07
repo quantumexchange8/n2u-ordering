@@ -41,7 +41,7 @@ export default function Voucher({ user }) {
                                     <Tab
                                         className="w-1/2 py-2 px-3 text-xs text-neutral-300 font-bold focus:outline-none data-[selected]:bg-white data-[selected]:text-primary-500 data-[selected]:border-b-2 data-[selected]:border-primary-500"
                                     >
-                                        <span className='px-2.5'>{t('my_vouchers')}()</span>
+                                        <span className='px-2.5'>{t('my_vouchers')}</span>
                                     </Tab>
                                 </div>
                             </TabList>

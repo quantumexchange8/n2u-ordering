@@ -26,12 +26,14 @@ export default function Rank({ auth, rank, rankingFee, rankSubsciption, wallet, 
         <>
             <Head title="Profile"/>
             <div className="w-full flex justify-center">
-                <div className="relative max-w-md w-full flex flex-col gap-14 min-h-[90vh] overflow-auto">
-                    <div className="h-40 bg-primary-500 pt-3 px-3 flex flex-col gap-4">
-                        <div className="rounded-full bg-white w-6 h-6 p-1 flex justify-center items-center" onClick={handleBack}>
+                <div className=" max-w-md w-full flex flex-col gap-8 min-h-[80vh] overflow-auto">
+                    <div className="h-40 bg-primary-500 pt-3 px-3 flex flex-col gap-3">
+                    <Link href={route('profile')}>
+                        <div className="rounded-full bg-white w-6 h-6 p-1 flex justify-center items-center">
                             <ChevronLeft />
                         </div>
-                        <div className="bg-primary-200 px-5 py-4 rounded-[20px] flex flex-col gap-3">
+                    </Link> 
+                        <div className="bg-primary-200 p-5 rounded-[20px] flex flex-col gap-3">
                             <div className="flex justify-between">
                                 <div className="flex flex-col gap-2">
                                     <div className="flex flex-col">

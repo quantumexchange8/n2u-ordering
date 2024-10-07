@@ -79,6 +79,9 @@ class VoucherController extends Controller
         $user = Auth::user();
         $voucher = VoucherRedeem::query()
             ->where('user_id', $user->id)
+            ->whereHas('vouchers', function ($query) {
+                $query->whereNull('deleted_at'); // Ensure it excludes soft-deleted vouchers
+                })
             ->with(['vouchers'])
             ->get();
 

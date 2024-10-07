@@ -2,7 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import DeleteUserForm from './Partials/DeleteUserForm';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
-import { Head, useForm } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 import { CustomToaster } from '@/Components/CustomToaster';
 import toast from 'react-hot-toast';
 import { ChevronLeft, EditIcon, EditIcon2, EmailIcon, NameIcon, PhoneIcon, ProfileIcon2, ProfileIcon3 } from '@/Components/Icon/Outline';
@@ -54,9 +54,11 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
             <div className="w-full flex justify-center">
                 <div className="max-w-md w-full flex flex-col min-h-[80vh] overflow-auto">
                     <div className="bg-white py-3 px-3 flex justify-between items-center gap-3 shadow-box">
-                        <div className="rounded-full bg-white w-6 h-6 p-1 flex justify-center items-center" onClick={handleBack}>
-                            <ChevronLeft />
-                        </div>
+                        <Link href={route('profile')}>
+                            <div className="rounded-full bg-white w-6 h-6 p-1 flex justify-center items-center">
+                                <ChevronLeft />
+                            </div>
+                        </Link>
                         <div className="text-neutral-900 font-bold text-sm">
                             {t('edit_profile')}
                         </div>

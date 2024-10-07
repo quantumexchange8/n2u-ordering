@@ -35,9 +35,11 @@ export default function Referral({ auth }) {
         <div className="flex justify-center">
             <div className="max-w-md w-full flex flex-col gap-8 min-h-[80vh] overflow-auto">
                 <div className="h-40 bg-primary-500 pt-3 px-3 flex flex-col gap-3">
-                    <div className="rounded-full bg-white w-6 h-6 p-1 flex justify-center items-center" onClick={handleBack}>
-                        <ChevronLeft />
-                    </div>
+                    <Link href={route('profile')}>
+                        <div className="rounded-full bg-white w-6 h-6 p-1 flex justify-center items-center">
+                            <ChevronLeft />
+                        </div>
+                    </Link>
                     <div className="bg-primary-200 p-5 rounded-[20px] flex flex-col gap-3">
                         <div className="font-bold text-lg">
                         {t('referral_code')}
